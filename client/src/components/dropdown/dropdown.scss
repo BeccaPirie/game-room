@@ -1,0 +1,26 @@
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+.dropdownList {
+    list-style: none;
+    position: absolute;
+    top: 67px;
+    right: 40px;
+    width: 155px;
+}
+
+.dropdownLink {
+    padding: 8px;
+    text-align: center;
+    background-color: rgb(245, 245, 245);
+    cursor: pointer;
+}
+
+.dropdownLink:hover {
+    background-color: rgb(233, 232, 232);
+}
