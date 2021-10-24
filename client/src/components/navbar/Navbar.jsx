@@ -19,11 +19,10 @@ export default function Navbar() {
             <div className="navbarRight">
                 <div className="accountBtn" onClick={dropdownHandler}>
                     <img src="../../assets/profile-pic.jpg" alt="" className="accountProfilePicture" />
-                        <span className="accountUsername">becca_pirie</span>
-                        <span className="arrow">
-                         {showDropdown ? <ArrowDropUp/> : <ArrowDropDown/>}   
-                        </span>
-                    
+                    <span className="accountUsername">becca_pirie</span>
+                    <span className="arrow">
+                        {showDropdown ? <ArrowDropUp/> : <ArrowDropDown/>}   
+                    </span>
                 </div>
                 <Dropdown show={showDropdown} />
             </div>

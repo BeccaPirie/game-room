@@ -1,16 +1,19 @@
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
 .navbarContainer {
     height: 70px;
     width: 100%;
-    background-color: #3cf08d;
+    background-color: $green;
     display: flex;
     align-items: center;
     position: sticky;
     top: 0;
     z-index: 999;
-  }
+}
   
 .navbarLeft {
-    flex: 5;
+    flex: 9;
 }
 
 .logo {
@@ -22,12 +25,11 @@
 }
 
 .navbarCentre {
-    flex: 3;
     display: none;
 }
 
 .navbarRight {
-    flex: 4;
+    flex: 3;
     display: flex;
     justify-content: flex-end;
     margin-right: 40px;
@@ -37,8 +39,8 @@
     position: relative;
     cursor: pointer;
     color: white;
-    background-color: #37e083;
-    width: 155px;
+    background-color: $darkgreen;
+    width: 75px;
     border-radius: 40px;
 }
 
@@ -51,14 +53,45 @@
 }
 
 .accountUsername {
-    position: absolute;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
+    display: none;
 }
 
 .arrow {
     position: absolute;
-    top: 15px;
-    left: 130px;
+    right: 5px;
+    @include vertically-align;
+}
+
+@media (min-width: 500px) {
+    .navbarLeft {
+        flex: 5;
+    }
+
+    .navbarCentre {
+        flex: 3;
+    }
+    
+    .navbarRight {
+        flex: 4;
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 40px;
+    }
+
+    .accountBtn {
+        width: 155px;
+        border-radius: 40px;
+    }
+
+    .accountUsername {
+        display: block;
+        position: absolute;
+        left: 50px;
+        font-weight: 600;
+        @include vertically-align;
+    }
+
+    .arrow {
+        left: 130px;
+    }
 }
