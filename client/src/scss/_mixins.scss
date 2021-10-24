@@ -1,5 +1,13 @@
 @mixin vertically-align {
+    position: absolute;
     top: 50%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
+}
+
+@mixin profile-photo {
+    width: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 5px;
 }

@@ -1,0 +1,24 @@
+@import '../../scss/mixins.scss';
+
+.friendActivityListItem {
+    display: flex;
+    padding-bottom: 10px;
+}
+
+.friendActivityDetails {
+    margin-top: 9px;
+    font-size: 14px;
+}
+
+.friendActivityProfileImg {
+    @include profile-photo;
+}
+
+.friendActivityUsername {
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.friendActivityLastPlayed {
+    color: grey;
+}

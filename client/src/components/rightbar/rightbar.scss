@@ -1,0 +1,57 @@
+.rightbar {
+    display: none;
+}
+
+.rightbarWrapper {
+    padding: 10px;
+}
+
+.rightbarTop {
+    display: flex;
+    padding: 10px;
+}
+
+.friendActivityTitle {
+    flex: 10;
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 3px;
+    padding-bottom: 10px;
+}
+
+.addFriendIcon {
+    flex: 2;
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+
+.friendActivityList {
+    list-style: none;
+    margin-left: -40px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+background-color: rgb(179, 179, 179);
+}
+
+@media (min-width: 700px)
+{
+    .rightbar {
+        display: block;
+        width: 300px;
+        background-color: rgb(248, 248, 248);
+        height: calc(100vh - 70px);
+        overflow-y: scroll;
+        position: sticky;
+        top: 70px;
+    }
+}

@@ -1,0 +1,10 @@
+.gamesContainer {
+    width: 100%;
+}
+
+@media (min-width: 700px)
+{
+    .gamesContainer {
+        width: calc(100vw - 300px);
+    }
+}

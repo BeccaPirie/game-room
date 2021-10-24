@@ -45,10 +45,7 @@
 }
 
 .accountProfilePicture {
-    width: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin: 5px;
+    @include profile-photo;
     padding-top: 3px;
 }
 
@@ -57,7 +54,6 @@
 }
 
 .arrow {
-    position: absolute;
     right: 5px;
     @include vertically-align;
 }
@@ -85,7 +81,6 @@
 
     .accountUsername {
         display: block;
-        position: absolute;
         left: 50px;
         font-weight: 600;
         @include vertically-align;
