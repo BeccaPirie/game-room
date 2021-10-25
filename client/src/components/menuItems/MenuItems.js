@@ -1,17 +1,14 @@
 export const MenuItems = [
     {
         title: 'Profile',
-        path: '',
-        className: 'dropdownLink'
+        path: 'profile',
     },
     {
         title: 'Friends',
-        path: '',
-        className: 'dropdownLink'
+        path: 'friends',
     },
     {
         title: 'Log out',
-        path: '',
-        className: 'dropdownLink'
+        path: 'logout',
     }
 ]

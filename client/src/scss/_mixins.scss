@@ -1,3 +1,7 @@
+@mixin container-height {
+    height: calc(100vh - 70px);
+}
+
 @mixin vertically-align {
     position: absolute;
     top: 50%;
@@ -10,4 +14,9 @@
     border-radius: 50%;
     object-fit: cover;
     margin: 5px;
+}
+
+@mixin link-text {
+    text-decoration: none;
+    color: black;
 }

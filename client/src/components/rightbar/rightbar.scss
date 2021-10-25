@@ -1,3 +1,5 @@
+@import '../../scss/mixins';
+
 .rightbar {
     display: none;
 }
@@ -47,11 +49,18 @@ background-color: rgb(179, 179, 179);
 {
     .rightbar {
         display: block;
-        width: 300px;
+        width: 280px;
         background-color: rgb(248, 248, 248);
-        height: calc(100vh - 70px);
+        @include container-height;
         overflow-y: scroll;
         position: sticky;
         top: 70px;
+    }
+}
+
+@media (min-width: 1700px)
+{
+    .rightbar {
+        width: 310px;
     }
 }

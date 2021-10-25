@@ -1,26 +1,24 @@
-.show {
-    display: block;
-}
-
-.hide {
-    display: none;
-}
+@import '../../scss/mixins';
 
 .dropdownList {
-    list-style: none;
-    position: absolute;
-    top: 67px;
-    right: 40px;
-    width: 155px;
+    ul {
+        list-style: none;
+        position: absolute;
+        top: 67px;
+        right: 40px;
+        width: 155px;  
+    }
+    li {
+        padding: 8px;
+        text-align: center;
+        background-color: white;
+        cursor: pointer;
+    }
+    li:hover {
+        background-color: rgb(233, 232, 232);
+    }
+    a {
+        @include link-text;
+    }
 }
 
-.dropdownLink {
-    padding: 8px;
-    text-align: center;
-    background-color: white;
-    cursor: pointer;
-}
-
-.dropdownLink:hover {
-    background-color: rgb(233, 232, 232);
-}

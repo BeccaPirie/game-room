@@ -1,0 +1,42 @@
+@import '../../scss/variables';
+
+.gameContainer {
+    margin: 10px;
+}
+
+.gameThumbnail {
+    width: 240px;
+    margin: auto;
+    display: block;
+}
+
+.button {
+    width: 120px;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 15px;
+    margin: 5px;
+}
+
+.leaderboardBtn {
+    background-color: $red;
+}
+
+.leaderboardBtn:hover {
+    background-color: $darkred;
+}
+
+.playBtn {
+    background-color:  $green;
+}
+
+.playBtn:hover {
+    background-color:  $darkgreen;
+}
+
+@media (min-width: 1700px) {
+    .gameThumbnail {
+        width: 270px;
+    }
+}

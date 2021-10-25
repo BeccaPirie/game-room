@@ -24,7 +24,7 @@ export default function Navbar() {
                         {showDropdown ? <ArrowDropUp/> : <ArrowDropDown/>}   
                     </span>
                 </div>
-                <Dropdown show={showDropdown} />
+                {showDropdown && <Dropdown onClick={dropdownHandler} />}
             </div>
         </div>
     )

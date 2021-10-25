@@ -1,18 +1,22 @@
 import './dropdown.scss'
 import { MenuItems } from '../menuItems/MenuItems'
+import { Link } from 'react-router-dom';
 
-export default function Dropdown({show}) {
+export default function Dropdown({ onClick }) {
+
     return (
-        <span className={show ? "show" : "hide"}>
-            <ul className="dropdownList">
+        <div className="dropdownList">
+            <ul>
                 {MenuItems.map((item, index) => {
                     return (
-                        <li key={index} className={item.className}>
-                            {item.title}
-                        </li>
+                        <Link to={item.path}>
+                            <li key={index} onClick={onClick}>
+                                {item.title}
+                            </li>
+                        </Link>
                     )
                 })}
             </ul>
-        </span>
+        </div>
     )
 }
