@@ -1,5 +1,25 @@
+@mixin page-container {
+    display: flex;
+    width: 100%;
+}
+
+@mixin main-container {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    @include container-height;
+}
+
 @mixin container-height {
     height: calc(100vh - 70px);
+}
+
+@mixin main-container-m {
+    width: calc(100vw - 280px);
+}
+
+@mixin main-container-l {
+    width: calc(100vw - 310px);
 }
 
 @mixin vertically-align {
@@ -14,6 +34,14 @@
     border-radius: 50%;
     object-fit: cover;
     margin: 5px;
+}
+
+@mixin button {
+    width: 120px;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 15px;
 }
 
 @mixin link-text {

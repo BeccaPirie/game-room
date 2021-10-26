@@ -1,4 +1,5 @@
 @import '../../scss/mixins';
+@import '../../scss/variables';
 
 .rightbar {
     display: none;
@@ -50,7 +51,7 @@ background-color: rgb(179, 179, 179);
     .rightbar {
         display: block;
         width: 280px;
-        background-color: rgb(248, 248, 248);
+        background-color: $grey;
         @include container-height;
         overflow-y: scroll;
         position: sticky;

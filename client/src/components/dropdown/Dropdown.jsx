@@ -2,7 +2,7 @@ import './dropdown.scss'
 import { MenuItems } from '../menuItems/MenuItems'
 import { Link } from 'react-router-dom';
 
-export default function Dropdown({ onClick }) {
+export default function Dropdown() {
 
     return (
         <div className="dropdownList">
@@ -10,7 +10,7 @@ export default function Dropdown({ onClick }) {
                 {MenuItems.map((item, index) => {
                     return (
                         <Link to={item.path}>
-                            <li key={index} onClick={onClick}>
+                            <li key={index} >
                                 {item.title}
                             </li>
                         </Link>

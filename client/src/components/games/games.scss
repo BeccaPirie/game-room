@@ -1,12 +1,9 @@
 @import '../../scss/mixins';
 
 .gamesContainer {
-    width: 100%;
-    height: fit-content;
-    display: flex;
+    @include main-container;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    @include container-height;
     align-items: center;
     padding-top: 0;
 }
@@ -14,13 +11,13 @@
 @media (min-width: 700px)
 {
     .gamesContainer {
-        width: calc(100vw - 280px);
+        @include main-container-m;
     }
 }
 
 @media (min-width: 1700px)
 {
     .gamesContainer {
-        width: calc(100vw - 310px);
+        @include main-container-l;
     }
 }

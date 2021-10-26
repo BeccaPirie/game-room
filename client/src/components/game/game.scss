@@ -1,4 +1,5 @@
 @import '../../scss/variables';
+@import '../../scss/mixins';
 
 .gameContainer {
     margin: 10px;
@@ -11,11 +12,7 @@
 }
 
 .button {
-    width: 120px;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-    border-radius: 15px;
+    @include button;
     margin: 5px;
 }
 
