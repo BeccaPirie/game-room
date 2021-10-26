@@ -1,4 +1,5 @@
 import './userProfile.scss';
+import TopScores from '../topScores/TopScores';
 
 export default function userProfile() {
     return (
@@ -36,7 +37,11 @@ export default function userProfile() {
             </div>
 
             <div className="userTopScores">
-
+                {/* <ul> */}
+                    <TopScores />
+                    <TopScores />
+                    <TopScores />
+                {/* </ul> */}
             </div>
 
         </div>

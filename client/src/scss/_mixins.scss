@@ -7,7 +7,6 @@
     width: 100%;
     height: fit-content;
     display: flex;
-    @include container-height;
 }
 
 @mixin container-height {

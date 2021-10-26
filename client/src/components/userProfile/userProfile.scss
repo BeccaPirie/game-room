@@ -1,13 +1,16 @@
 @import '../../scss/mixins';
+@import '../../scss/variables';
 
 .userProfileContainer {
     @include main-container;
+    display: block;
 }
 
 .userInformation {
-    padding-bottom: 40px;
+    padding-bottom: 20px;
     width: 100%;
     height: fit-content;
+    background-color: aliceblue;
 }
 
 .userDiv {
@@ -23,16 +26,30 @@
 
 .userDetails {
     display: flex;
+    padding: 5px;
+
+    .user {
+        flex: 8;
+        padding-left: 7px;
+    }
+
+   .userBtn {
+        flex: 4;
+        display: flex;
+        justify-content: flex-end;
+    } 
+
+    .button {
+        margin-top: 5px;
+        @include button;
+        min-width: 70px;
+        width: fit-content;
+    }
 }
 
-.button {
-    margin-top: 5px;
-    position: relative;
-    left: 30px;
-    @include button;
-    min-width: 70px;
-    width: fit-content;
-}
+
+
+
 
 .userStats {
     display: flex;
@@ -46,6 +63,10 @@
 
 .statWording {
     font-weight: 300;
+}
+
+.userTopScores {
+    padding: 20px;
 }
 
 @media (min-width: 700px)

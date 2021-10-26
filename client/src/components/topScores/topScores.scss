@@ -1,0 +1,37 @@
+@import '../../scss/mixins';
+@import '../../scss/variables';
+
+.topScoresItem {
+    width: 80%;
+    display: flex;
+    border-radius: 20px;
+    background-color: $grey;
+    margin: auto;
+    margin-bottom: 10px;
+    padding: 20px;
+}
+
+.gameThumbnail {
+    width: 60px;
+    margin: 5px;
+}
+
+.topScoreText {
+    font-weight: 500;
+    color: rgb(128, 128, 128);
+    margin-top: 25px;
+    margin-left: 15px;
+    width: 100%;
+    display: flex;
+    align-content: center;
+}
+
+.gameTitle {
+    flex: 9;
+}
+
+.score {
+    flex: 3;
+    display: flex;
+    justify-content: flex-end;
+}
