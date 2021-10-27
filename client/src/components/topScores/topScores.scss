@@ -2,13 +2,14 @@
 @import '../../scss/variables';
 
 .topScoresItem {
-    width: 80%;
+    // width: 80%;
     display: flex;
     border-radius: 20px;
-    background-color: $grey;
-    margin: auto;
+    // background-color: $grey;
+    // margin: auto;
     margin-bottom: 10px;
     padding: 20px;
+    box-shadow: 5px 5px 60px 10px #f1f1f1;
 }
 
 .gameThumbnail {
@@ -18,7 +19,7 @@
 
 .topScoreText {
     font-weight: 500;
-    color: rgb(128, 128, 128);
+    color: rgb(104, 103, 103);
     margin-top: 25px;
     margin-left: 15px;
     width: 100%;

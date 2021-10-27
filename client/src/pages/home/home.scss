@@ -3,3 +3,25 @@
 .homeContainer {
     @include page-container
 }
+
+.gamesContainer {
+    @include main-container;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-top: 100px;
+}
+
+@media (min-width: 700px)
+{
+    .gamesContainer {
+        @include main-container-m;
+    }
+}
+
+@media (min-width: 1700px)
+{
+    .gamesContainer {
+        @include main-container-l;
+    }
+}

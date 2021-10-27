@@ -1,8 +1,21 @@
 import './dropdown.scss'
-import { MenuItems } from '../menuItems/MenuItems'
 import { Link } from 'react-router-dom';
 
 export default function Dropdown() {
+    const MenuItems = [
+        {
+            title: 'Profile',
+            path: 'profile',
+        },
+        {
+            title: 'Friends',
+            path: 'friends',
+        },
+        {
+            title: 'Log out',
+            path: 'logout',
+        }
+    ]
 
     return (
         <div className="dropdownList">

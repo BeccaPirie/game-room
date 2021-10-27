@@ -1,5 +1,113 @@
 @import '../../scss//mixins';
+@import '../../scss/variables';
 
 .profileContainer {
     @include page-container;
+}
+
+.userProfileContainer {
+    @include main-container;
+    display: block;
+}
+
+.userInformation {
+    padding-bottom: 5px;
+    width: 100%;
+    height: fit-content;
+}
+
+.userDiv {
+    margin: auto;
+    width: fit-content;
+    padding: 20px;
+
+    img {
+        @include profile-photo;
+        width: 180px;
+    }
+}
+
+.userDetails {
+    display: flex;
+    padding: 5px;  
+}
+
+.user {
+        flex: 8;
+        padding-left: 7px;
+    }
+
+.userBtn {
+    flex: 4;
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+        margin-top: 5px;
+        @include button;
+        min-width: 70px;
+        width: fit-content;
+        background-color: $green;
+    }
+} 
+
+.userStats {
+    display: flex;
+    padding: 20px;
+    justify-content: space-evenly;
+}
+
+.statNumber {
+    font-weight: 600;
+}
+
+.statWording {
+    font-weight: 300;
+}
+
+.userTopScores {
+    padding: 20px;
+    width: 80%;
+    margin: auto;
+    margin-bottom: 20px;
+
+    p {
+        margin: 0 0 20px 20px;
+        font-size: 24px;
+    }
+}
+
+@media (min-width: 700px)
+{
+    .userProfileContainer {
+        @include main-container-m;
+    }
+}
+
+@media (min-width: 1100px) {
+    .userInformation {
+        display: flex;
+        padding-left: 10%;
+    }
+
+    .userDiv {
+        width: 200px;
+        margin: 0;
+    }
+
+    .userStats {
+        padding: 30px;
+        padding-top: 90px;
+    }
+
+    .statsDiv {
+        width: 170px;
+    }
+}
+
+@media (min-width: 1700px)
+{
+    .userProfileContainer {
+        @include main-container-l;
+    }
 }
