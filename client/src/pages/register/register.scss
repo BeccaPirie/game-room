@@ -1,0 +1,94 @@
+@import '../../scss//variables';
+
+.login {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+  }
+
+  .loginBox {
+      width: 80%;
+      margin: auto;
+      height: 400px;
+      padding: 60px 20px;
+      background-color: white;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 20px 20px 60px 10px #ebebeb;
+  }
+
+  .loginTitle {
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: 800;
+    color: $green;
+    margin-bottom: 10px;
+  }
+  
+  .loginInput{
+      height: 50px;
+      border-radius: 10px;
+      border: 1px solid gray;
+      font-size: 16px;
+      padding-left: 20px;
+  }
+  
+  .loginInput:focus{
+      outline: none;
+  }
+  
+  .loginButton{
+      height: 50px;
+      border-radius: 10px;
+      border: none;
+      background-color: $green;
+      color: white;
+      font-size: 18px;
+      font-weight: 500;
+      cursor: pointer;
+  }
+  
+  .loginForgot{
+      text-align: center;
+      color: #1775ee;
+  }
+  
+  .loginRegisterButton{
+      width: 60%;
+      align-self: center;
+      height: 50px;
+      border-radius: 10px;
+      border: none;
+      background-color: #7ef5d1;
+      color: white;
+      font-size: 18px;
+      font-weight: 500;
+      cursor: pointer;
+  }
+
+  @media (min-width: 800px) {
+    .loginBox {
+        width: 500px;
+    }
+
+    .loginTitle {
+        font-size: 50px;
+    }
+
+    .loginInput{
+        font-size: 18px;
+    }
+
+    .loginButton .loginRegisterButton {
+        font-size: 20px;
+    }
+}
+
+@media (min-height: 600px) {
+    .loginBox {
+        height: 500px;
+    }
+}
