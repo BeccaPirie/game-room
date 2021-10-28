@@ -1,0 +1,10 @@
+.favouritedGames {
+    box-shadow: 5px 5px 60px 10px #f1f1f1;
+    overflow: auto;
+    white-space: nowrap;
+
+    img {
+        width: 120px;
+        margin: 15px 10px;
+    }
+}

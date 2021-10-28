@@ -2,6 +2,7 @@ import "./profile.scss";
 import Navbar from "../../components/navbar/Navbar";
 import Rightbar from "../../components/rightbar/Rightbar";
 import TopScores from "../../components/topScores/TopScores";
+import ProfileGamesDisplay from "../../components/profileGamesDisplay/ProfileGamesDisplay";
 
 export default function Profile() {
     return (
@@ -41,6 +42,16 @@ export default function Profile() {
                                 <div className="statWording">Following</div>
                             </div>
                         </div>
+                    </div>
+
+                    <div className="gamesOuterDiv">
+                        <p>Favourite Games</p>
+                        <ProfileGamesDisplay />
+                    </div>
+
+                    <div className="recentlyPlayed gamesOuterDiv">
+                        <p>Recently Played Games</p>
+                        <ProfileGamesDisplay />
                     </div>
 
                     <div className="userTopScores">

@@ -73,7 +73,7 @@
 
     p {
         margin: 0 0 20px 20px;
-        font-size: 24px;
+        font-size: 20px;
     }
 }
 
@@ -109,5 +109,31 @@
 {
     .userProfileContainer {
         @include main-container-l;
+    }
+}
+
+
+.gamesOuterDiv {
+    width: 80%;
+    margin: auto;
+
+    p {
+        margin: 0 0 20px 20px;
+        font-size: 20px;
+    }
+}
+
+.recentlyPlayed {
+    margin-top: 30px;
+}
+
+.favouritedGames {
+    box-shadow: 5px 5px 60px 10px #f1f1f1;
+    overflow: auto;
+    white-space: nowrap;
+
+    img {
+        width: 120px;
+        margin: 15px 10px;
     }
 }
