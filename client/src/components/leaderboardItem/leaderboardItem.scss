@@ -1,0 +1,38 @@
+.leaderboardListItem {
+    display: flex;
+    padding: 20px;
+}
+
+.listNumber {
+    position: relative;
+    top: 20px;
+    right: 20px;
+    font-weight: 600;
+    color: rgb(104, 103, 103);
+}
+
+.itemThumbnail {
+    width: 60px;
+    margin: 5px;
+}
+
+.leaderboardText {
+    font-weight: 500;
+    color: rgb(104, 103, 103);
+    margin-top: 25px;
+    margin-left: 15px;
+    width: 100%;
+    display: flex;
+    align-content: center;
+}
+
+.leaderboardUsername {
+    flex: 9;
+}
+
+.leaderboardScore {
+    flex: 3;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 40px;
+}

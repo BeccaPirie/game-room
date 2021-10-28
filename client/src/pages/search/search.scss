@@ -1,0 +1,21 @@
+@import '../../scss//mixins';
+
+.searchPageContainer {
+  @include page-container;
+}
+
+.searchContainer {
+  @include main-container;
+}
+
+@media (min-width: 700px) {
+  .searchContainer {
+    @include main-container-m;
+  }
+}
+
+@media (min-width: 1700px) {
+  .searchContainer {
+    @include main-container-l;
+  }
+}

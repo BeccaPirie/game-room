@@ -1,0 +1,59 @@
+@import '../../scss//mixins';
+@import '../../scss//variables';
+
+.leaderboardPageContainer {
+    @include page-container
+}
+
+.leaderboardContainer {
+    @include main-container;
+}
+
+.leaderboard {
+    padding: 20px;
+    width: 80%;
+    margin: auto;
+    margin-bottom: 20px;
+
+    
+    p {
+        margin: 0 0 20px 20px;
+        font-size: 20px;
+    }
+}
+
+.options {
+    display: flex;
+
+    div {
+        flex: 6;
+        background-color: $green;
+        cursor: pointer;
+        padding: 18px;
+        text-align: center;
+    }
+
+    div:hover, .selected {
+        background-color: $darkgreen;
+    }
+}
+
+.leaderboardItems {
+    box-shadow: 5px 5px 60px 10px #f1f1f1;
+    height: calc(100vh - 230px);
+    overflow-y: scroll;
+}
+
+@media (min-width: 700px)
+{
+    .leaderboardContainer {
+        @include main-container-m;
+    }
+}
+
+@media (min-width: 1700px)
+{
+    .leaderboardContainer {
+        @include main-container-l;
+    }
+}

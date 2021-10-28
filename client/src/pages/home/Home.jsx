@@ -26,15 +26,11 @@ export default function Home() {
         <>
             <Navbar/>
             <div className="homeContainer">
-                {/* <Games/> */}
-
                 <div className="gamesContainer">
                     {games.map((game) => <Game key={game.id} game={game}/>)}
                 </div>
-
                 <Rightbar/>
             </div>
-            
         </>
     )
 }
