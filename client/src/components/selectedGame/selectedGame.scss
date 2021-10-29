@@ -1,0 +1,71 @@
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+.selectedGameContainer {
+    background-color: $lightgreen;
+    width: 40%;
+    padding: 30px;
+    position: absolute;
+    top: 25%;
+    left: 30%;
+    z-index: 2;
+}
+
+.thumbnail {
+    width: 240px;
+    margin: 0 auto 20px;
+    display: block;
+}
+
+.gameBtns {
+    display: flex;
+    justify-content: center
+}
+
+.button {
+    @include button;
+    margin: 5px;
+}
+
+.cancel {
+    color: red;
+    background-color: white;
+    border-radius: 50%;
+    padding: 4px 5px 0;
+    margin: 0;
+    position: relative;
+    top: -26px;
+    left: 283px;
+    width: fit-content;
+}
+
+.addFavourite {
+    position: absolute;
+    left: 265px;
+    top: 40px;
+    padding: 5px 7px;
+    width: fit-content;
+    background-color: rgb(243, 255, 136);
+}
+
+.leaderboardBtn {
+    background-color: $red;
+}
+
+.leaderboardBtn:hover {
+    background-color: $darkred;
+}
+
+.playBtn {
+    background-color:  $green;
+}
+
+.playBtn:hover {
+    background-color:  $darkgreen;
+}
+
+@media (min-width: 1700px) {
+    .gameThumbnail {
+        width: 270px;
+    }
+}

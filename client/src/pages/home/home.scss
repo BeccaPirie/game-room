@@ -6,10 +6,23 @@
 
 .gamesContainer {
     @include main-container;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: center;
-    padding-top: 100px;
+    display: block;
+}
+
+.welcome {
+    width: 80%;
+    margin: 40px auto;
+    font-size: 30px;
+}
+
+.gamesDiv {
+    width: 80%;
+    margin: 30px auto;
+
+    p {
+        margin: 0 0 20px 5px;
+        font-size: 20px;
+    }
 }
 
 @media (min-width: 700px)

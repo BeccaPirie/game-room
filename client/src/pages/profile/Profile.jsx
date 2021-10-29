@@ -2,7 +2,7 @@ import "./profile.scss";
 import Navbar from "../../components/navbar/Navbar";
 import Rightbar from "../../components/rightbar/Rightbar";
 import TopScores from "../../components/topScores/TopScores";
-import ProfileGamesDisplay from "../../components/profileGamesDisplay/ProfileGamesDisplay";
+import GamesDisplay from "../../components/gamesDisplay/GamesDisplay";
 
 export default function Profile() {
     return (
@@ -46,12 +46,12 @@ export default function Profile() {
 
                     <div className="gamesOuterDiv">
                         <p>Favourite Games</p>
-                        <ProfileGamesDisplay />
+                        <GamesDisplay />
                     </div>
 
                     <div className="recentlyPlayed gamesOuterDiv">
                         <p>Recently Played Games</p>
-                        <ProfileGamesDisplay />
+                        <GamesDisplay />
                     </div>
 
                     <div className="userTopScores">
