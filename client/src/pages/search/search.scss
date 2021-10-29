@@ -1,4 +1,4 @@
-@import '../../scss//mixins';
+@import '../../scss/mixins';
 
 .searchPageContainer {
   @include page-container;
@@ -6,6 +6,40 @@
 
 .searchContainer {
   @include main-container;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.searchbar {
+  width: 80%;
+  margin-top: 30px;
+}
+
+.wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.searchInput {
+  border-radius: 20px;
+  padding: 8px;
+  width: 80%;
+  margin-right: 5px;
+  border: 2px solid rgb(184, 183, 183);
+}
+
+.searchBtn {
+  @include button;
+  width: 90px;
+}
+
+.searchBtn:hover {
+  background-color: rgb(221, 221, 221);
+}
+
+.searchResults {
+  width: 80%;
+  padding: 20px 5%;
 }
 
 @media (min-width: 700px) {
