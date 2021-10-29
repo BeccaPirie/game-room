@@ -5,6 +5,8 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import Leaderboard from "./pages/leaderboard/Leaderboard";
 import Search from "./pages/search/Search";
+import Followers from './pages/followers/Followers';
+import Following from './pages/following/Following';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         <Route path='/register' component={Register} />
         <Route path="/leaderboard" component={Leaderboard} />
         <Route path="/search" component={Search} />
+        <Route path="/followers" component={Followers} />
+        <Route path="/following" component={Following} />
       </Switch>
     </Router>
   );

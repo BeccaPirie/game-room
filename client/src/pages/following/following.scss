@@ -1,0 +1,35 @@
+@import '../../scss/mixins';
+
+.followingPageContainer {
+    @include page-container
+}
+
+.followingContainer {
+    @include main-container;
+    flex-wrap: wrap;
+
+    p {
+        margin: 20px 20px 5px 50px;
+        font-size: 20px;
+    }
+}
+
+.followingUserList {
+    width: 80%;
+    padding: 5px 5%;
+    margin: auto;
+  }
+
+@media (min-width: 700px)
+{
+    .followingContainer {
+        @include main-container-m;
+    }
+}
+
+@media (min-width: 1700px)
+{
+    .followingContainer {
+        @include main-container-l;
+    }
+}
