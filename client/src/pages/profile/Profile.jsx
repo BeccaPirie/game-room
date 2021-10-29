@@ -17,7 +17,7 @@ export default function Profile() {
 
                         <div className="userDiv">
                         <img src="../assets/profile-pic.jpg" alt="" className="profileImg" />
-                            <div className="userDetails">
+                            <div className="userDetailsProfile">
                                 <div className="user">
                                     <h4 className="username">Rebecca</h4>
                                     <p className="userId">becca_pirie</p>
