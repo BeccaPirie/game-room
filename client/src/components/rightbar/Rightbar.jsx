@@ -1,7 +1,7 @@
 import './rightbar.scss'
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import FriendActivity from '../friendActivity/FriendActivity';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 export default function Rightbar() {
     return (

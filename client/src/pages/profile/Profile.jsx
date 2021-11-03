@@ -5,6 +5,8 @@ import TopScores from "../../components/topScores/TopScores";
 import GamesDisplay from "../../components/gamesDisplay/GamesDisplay";
 
 export default function Profile() {
+    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
     return (
         <div>
             <Navbar />
@@ -16,7 +18,7 @@ export default function Profile() {
                     <div className="userInformation">
 
                         <div className="userDiv">
-                        <img src="../assets/profile-pic.jpg" alt="" className="profileImg" />
+                        <img src={`${PF}profile-pic.jpg`} alt="" className="profileImg" />
                             <div className="userDetailsProfile">
                                 <div className="user">
                                     <h4 className="username">Rebecca</h4>

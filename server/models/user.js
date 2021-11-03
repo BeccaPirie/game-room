@@ -31,13 +31,25 @@ const UserSchema = new mongoose.Schema({
         type:Array,
         default:[]
     },
+    points:{
+        type:String,
+        default:"0"
+    },
     lastPlayed:{
         type:String,
         default:""
     },
-    scores:{
-        type:Array,
+    favGames:{
+        type: Array,
         default:[]
+    },
+    recentGames:{
+        type: Array,
+        default:[]
+    },
+    topScores:{
+        type:Object,
+        default:{}
     },
     isAdmin:{
         type:Boolean,

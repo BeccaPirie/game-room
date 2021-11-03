@@ -6,6 +6,10 @@ router.get("/", (req, res) => {
     res.send("user route")
 });
 
+router.get("/test", (req, res) => {
+    res.send("test")
+});
+
 // update user
 router.put("/:id", async(req, res) => {
     if(req.body.userId == req.params.id || req.body.isAdmin){

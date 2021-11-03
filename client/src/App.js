@@ -12,14 +12,30 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path='/' exact component={Home} />
-        <Route path='/profile' component={Profile} />
-        <Route path='/login' component={Login} />
-        <Route path='/register' component={Register} />
-        <Route path="/leaderboard" component={Leaderboard} />
-        <Route path="/search" component={Search} />
-        <Route path="/followers" component={Followers} />
-        <Route path="/following" component={Following} />
+        <Route exact path='/'>
+          <Home />
+        </Route>
+        <Route path='/profile/'> {/* :username */}
+          <Profile />
+        </Route>
+        <Route path='/login'>
+          <Login />
+        </Route>
+        <Route path='/register'>
+          <Register />
+        </Route>
+        <Route path='/leaderboard'>
+          <Leaderboard />
+        </Route>
+        <Route path='/search'>
+          <Search />
+        </Route>
+        <Route path='/followers'>
+          <Followers />
+        </Route>
+        <Route path='/following'>
+          <Following />
+        </Route>
       </Switch>
     </Router>
   );
