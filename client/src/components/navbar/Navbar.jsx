@@ -3,15 +3,17 @@ import { ArrowDropDown, ArrowDropUp } from '@mui/icons-material';
 import Dropdown from '../dropdown/Dropdown';
 import { useState } from 'react';
 import { Link } from "react-router-dom"
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext'
 
 export default function Navbar() {
+    const { user } = useContext(AuthContext)
     const [showDropdown, setshowDropdown] = useState(false)
+    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
     const dropdownHandler = () => {
         setshowDropdown(!showDropdown)
     }
-
-    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
     return (
         <div className="navbarContainer">
@@ -23,13 +25,13 @@ export default function Navbar() {
             <div className="navbarCentre"></div>
             <div className="navbarRight">
                 <div className="accountBtn" onClick={dropdownHandler}>
-                    <img src={`${PF}profile-pic.jpg`} alt="" className="accountProfilePicture" />
-                    <span className="accountUsername">becca_pirie</span>
+                    <img src={user.profilePicture ? PF+user.profilePicture : PF+"profile-pic.jpg"} alt="" className="accountProfilePicture" />
+                    <span className="accountUsername">{user.username}</span>
                     <span className="arrow">
                         {showDropdown ? <ArrowDropUp/> : <ArrowDropDown/>}   
                     </span>
                 </div>
-                {showDropdown && <Dropdown />}
+                {showDropdown && <Dropdown user={user}/>}
             </div>
         </div>
     )

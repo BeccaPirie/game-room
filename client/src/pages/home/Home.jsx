@@ -6,44 +6,37 @@ import SelectedGame from "../../components/selectedGame/SelectedGame";
 // import { Select } from "@mui/material";
 import { useState, useEffect } from "react";
 import axios from 'axios';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext'
 
 export default function Home() {
     const [showModal, setshowModal] = useState(false)
-    const [user, setUser] = useState({})
     const [favGames, setFavGames] = useState([])
     const [recentGames, setRecentGames] = useState([])
     const [games, setGames] = useState([])
+    const { user } = useContext(AuthContext)
 
     const modalHandler = () => {
         setshowModal(!showModal)
     }
 
     useEffect(()=> {
-        const fetchUser = async () => {
-            const res = await axios.get("users?userId=61827aee2e73fcd8dc5acc5f")
-            console.log(res.data)
-            setUser(res.data)
-        }
-        fetchUser();
-    },[])
-
-    useEffect(()=> {
         const fetchFavouriteGames = async () => {
-            const res = await axios.get("games/favourite-games/61827aee2e73fcd8dc5acc5f")
+            const res = await axios.get(`/games/favourite-games/${user.username}`)
             console.log(res.data)
             setFavGames(res.data)
         }
         fetchFavouriteGames();
-    },[])
+    },[user])
 
     useEffect(()=> {
         const fetchRecentGames = async () => {
-            const res = await axios.get("games/recently-played-games/61827aee2e73fcd8dc5acc5f")
+            const res = await axios.get(`/games/recently-played-games/${user.username}`)
             console.log(res.data)
             setRecentGames(res.data)
         }
         fetchRecentGames();
-    },[])
+    },[user])
 
     useEffect(()=> {
         const fetchAllGames = async () => {

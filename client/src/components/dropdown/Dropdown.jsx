@@ -1,15 +1,11 @@
 import './dropdown.scss'
 import { Link } from 'react-router-dom';
 
-export default function Dropdown() {
+export default function Dropdown({ user }) {
     const MenuItems = [
         {
             title: 'Profile',
-            path: 'profile',
-        },
-        {
-            title: 'Friends',
-            path: 'friends',
+            path: `profile/${user.username}`,
         },
         {
             title: 'Log out',

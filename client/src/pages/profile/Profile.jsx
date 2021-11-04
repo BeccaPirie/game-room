@@ -40,7 +40,7 @@ export default function Profile() {
             setRecentGames(res.data)
         }
         fetchRecentGames();
-    },[])    
+    },[username])    
 
     return (
         <div>
@@ -53,7 +53,7 @@ export default function Profile() {
                     <div className="userInformation">
 
                         <div className="userDiv">
-                        <img src={user.profilePicture || PF+"profile-pic.jpg"} alt="" className="profileImg" />
+                        <img src={user.profilePicture ? PF+user.profilePicture : PF+"profile-pic.jpg"} alt="" className="profileImg" />
                             <div className="userDetailsProfile">
                                 <div className="user">
                                     <h4 className="username">{user.username}</h4>
