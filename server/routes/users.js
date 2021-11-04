@@ -118,7 +118,24 @@ router.get("/following/:user", async (req, res) => {
             })
         );
         res.status(200).json(following);
-        }
+    }
+    catch(err) {
+        res.status(500).json(err);
+    }
+})
+
+// get followers
+router.get("/followers/:user", async (req, res) => {
+    try {
+        const currentUser =
+        await User.findOne({username: req.params.user}) || await User.findById(req.params.user);
+        const followers = await Promise.all(
+            currentUser.followers.map((userId) => {
+                return User.findById(userId)
+            })
+        );
+        res.status(200).json(followers)
+    }
     catch(err) {
         res.status(500).json(err);
     }

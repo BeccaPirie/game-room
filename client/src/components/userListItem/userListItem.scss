@@ -24,6 +24,10 @@
 
 .itemUsername {
     flex: 9;
+
+    a {
+        @include link-text;
+    }
 }
 
 .followBtn {

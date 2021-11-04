@@ -34,10 +34,10 @@ function App() {
         <Route path='/search'>
           <Search />
         </Route>
-        <Route path='/followers'>
+        <Route path='/followers/:username'>
           <Followers />
         </Route>
-        <Route path='/following'>
+        <Route path='/following/:username'>
           <Following />
         </Route>
       </Switch>

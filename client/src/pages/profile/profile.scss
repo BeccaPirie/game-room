@@ -75,6 +75,10 @@
 
 .statNumber {
     font-weight: 600;
+
+    a {
+        @include link-text;
+    }
 }
 
 .statWording {

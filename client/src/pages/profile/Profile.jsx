@@ -6,6 +6,7 @@ import GamesDisplay from "../../components/gamesDisplay/GamesDisplay";
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import { useParams } from "react-router"
+import { Link } from 'react-router-dom';
 
 export default function Profile() {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -71,11 +72,19 @@ export default function Profile() {
                                 <div className="statWording">Points</div>
                             </div>
                             <div className="statsDiv followersDiv">
-                                <div className="statNumber">{user.followers ? user.followers.length : "0"}</div>
+                                <div className="statNumber">
+                                    <Link to={`/followers/${user.username}`}>
+                                        {user.followers ? user.followers.length : "0"}
+                                    </Link>
+                                </div>
                                 <div className="statWording">Followers</div>
                             </div>
                             <div className="statsDiv followingDiv">
-                                <div className="statNumber">{user.following? user.following.length : "0"}</div>
+                                <div className="statNumber">
+                                    <Link to={`/following/${user.username}`}>
+                                        {user.following? user.following.length : "0"}
+                                    </Link>
+                                </div>
                                 <div className="statWording">Following</div>
                             </div>
                         </div>
