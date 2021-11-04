@@ -20,7 +20,7 @@ export default function Home() {
 
     useEffect(()=> {
         const fetchUser = async () => {
-            const res = await axios.get("users/61827aee2e73fcd8dc5acc5f")
+            const res = await axios.get("users?userId=61827aee2e73fcd8dc5acc5f")
             console.log(res.data)
             setUser(res.data)
         }

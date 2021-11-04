@@ -6,7 +6,7 @@ export default function ProfileGamesDisplay({ games, modalHandler }) {
     return (
         <div className="favouritedGames">
             {games.map((game) => (
-                <img key={game.name} src={`${PF}profile-pic.jpg`} alt="" className="favouriteGameImg" onClick={modalHandler}/>
+                <img key={game._id} src={game.thumbnail || PF+"profile-pic.jpg"} alt="" className="favouriteGameImg" onClick={modalHandler}/>
             ))}
         </div>
     )

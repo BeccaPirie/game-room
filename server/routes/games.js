@@ -21,6 +21,7 @@ router.post("/add", async(req, res) => {
     }
 })
 
+//get all games
 router.get("/all", async(req, res) => {
     try{
         const games = await Game.find({});
@@ -43,9 +44,12 @@ router.get("/:id", async(req, res) => {
 });
 
 // get users favourite games
-router.get("/favourite-games/:userId", async (req, res) => {
+router.get("/favourite-games/:user", async (req, res) => {
+    // const userId = req.query.userId;
+    // const username = req.query.username;
     try {
-      const currentUser = await User.findById(req.params.userId);
+      const currentUser = 
+      await User.findOne({username: req.params.user}) || await User.findById(req.params.user);
         const favouriteGames = await Promise.all(
             currentUser.favGames.map((gameId) => {
                 return Game.findById(gameId)
@@ -58,9 +62,10 @@ router.get("/favourite-games/:userId", async (req, res) => {
 })
 
 // get users recently played games
-router.get("/recently-played-games/:userId", async (req, res) => {
+router.get("/recently-played-games/:user", async (req, res) => {
     try {
-        const currentUser = await User.findById(req.params.userId);
+        const currentUser = 
+        await User.findOne({username: req.params.user}) || await User.findById(req.params.user);
           const recentlyPlayedGames = await Promise.all(
               currentUser.recentGames.map((gameId) => {
                   return Game.findById(gameId)

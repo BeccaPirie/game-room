@@ -2,10 +2,6 @@ const router = require("express").Router();
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
 
-router.get("/", (req, res) => {
-    res.send("user route")
-});
-
 router.get("/test", (req, res) => {
     res.send("test")
 });
@@ -52,9 +48,13 @@ router.delete("/:id", async(req, res) => {
 });
 
 // get user
-router.get("/:id", async(req, res) => {
+router.get("/", async(req, res) => {
+    const userId = req.query.userId;
+    const username = req.query.username;
     try{
-        const user = await User.findById(req.params.id);
+        const user = userId 
+        ? await User.findById(userId)
+        : await User.findOne({username: username});
         const {password, updatedAt, ...other} = user._doc;
         res.status(200).json(other);
     }
