@@ -17,6 +17,11 @@
 .friendActivityUsername {
     font-weight: 500;
     cursor: pointer;
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
 }
 
 .friendActivityLastPlayed {

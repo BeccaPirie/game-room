@@ -1,7 +1,7 @@
 import './rightbar.scss'
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import FriendActivity from '../friendActivity/FriendActivity';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import { useContext } from 'react';
@@ -13,7 +13,7 @@ export default function Rightbar() {
 
     useEffect(() => {
         const fetchFollowing = async () => {
-            const res = await axios.get(`users/following/${user.username}`)
+            const res = await axios.get(`/users/following/${user.username}`)
             console.log(res.data)
             setFollowing(res.data)
         }
@@ -25,13 +25,13 @@ export default function Rightbar() {
             <div className="rightbarWrapper">
                 <div className="rightbarTop">
                     <span className="friendActivityTitle">Friend Activity</span>
-                    {/* <Link to={}> */}
+                    <Link to={'/search'}>
                         <PersonAddAlt1Icon className="addFriendIcon"/>
-                    {/* </Link> */}
+                    </Link>
                 </div>
                 <ul className="friendActivityList">
-                    {following.map((f) => (
-                        <FriendActivity user={f}/>
+                    {following.map((user) => (
+                        <FriendActivity key={user._id} user={user}/>
                     ))}
                 </ul>
             </div>

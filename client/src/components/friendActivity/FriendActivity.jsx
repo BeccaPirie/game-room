@@ -1,4 +1,5 @@
 import './friendActivity.scss'
+import { Link } from 'react-router-dom'
 
 export default function FriendActivity({ user }) {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -7,7 +8,9 @@ export default function FriendActivity({ user }) {
         <li className="friendActivityListItem">
             <img src={user.profilePicture ? PF+user.profilePicture : PF+"profile-pic.jpg"} alt="" className="friendActivityProfileImg" />
             <div className="friendActivityDetails">
-                <div className="friendActivityUsername">{user.username}</div>
+            
+                <div className="friendActivityUsername"><Link to={`/profile/${user.username}`}>{user.username}</Link></div>
+            
                 <div className="friendActivityLastPlayed">Last Played: {user.lastPlayed}</div>
             </div>
         </li>

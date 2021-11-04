@@ -5,7 +5,7 @@ export default function Dropdown({ user }) {
     const MenuItems = [
         {
             title: 'Profile',
-            path: `profile/${user.username}`,
+            path: `/profile/${user.username}`,
         },
         {
             title: 'Log out',
