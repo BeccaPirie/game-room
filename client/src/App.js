@@ -7,6 +7,7 @@ import Leaderboard from "./pages/leaderboard/Leaderboard";
 import Search from "./pages/search/Search";
 import Followers from './pages/followers/Followers';
 import Following from './pages/following/Following';
+import Start from './pages/start/Start';
 import { useContext } from 'react';
 import { AuthContext } from './context/AuthContext';
 
@@ -28,7 +29,7 @@ function App() {
         <Route path='/register'>
           {user ? <Redirect to="/" /> : <Register />}
         </Route>
-        <Route path='/leaderboard'>
+        <Route path='/leaderboard/:gameId'>
           <Leaderboard />
         </Route>
         <Route path='/search'>
@@ -39,6 +40,9 @@ function App() {
         </Route>
         <Route path='/following/:username'>
           <Following />
+        </Route>
+        <Route path='/start/:gameId'>
+          <Start />
         </Route>
       </Switch>
     </Router>

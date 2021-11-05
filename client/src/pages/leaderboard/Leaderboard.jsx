@@ -2,8 +2,23 @@ import Navbar from '../../components/navbar/Navbar'
 import Rightbar from '../../components/rightbar/Rightbar'
 import LeaderboardItem from '../../components/leaderboardItem/LeaderboardItem'
 import './leaderboard.scss'
+import { useParams } from "react-router"
+import { useState, useEffect } from "react";
+import axios from 'axios';
 
 export default function Leaderboard() {
+    const gameId = useParams().gameId
+    const [game, setGame] = useState({})
+
+    useEffect(() => {
+        const fetchGame = async () => {
+            const res = await axios.get(`/games/${gameId}`)
+            console.log(res.data)
+            setGame(res.data)
+        }
+        fetchGame()
+    }, [gameId])
+
     return (
         <>
             <Navbar />
@@ -12,7 +27,7 @@ export default function Leaderboard() {
                     
 
                     <div className="leaderboard">
-                        <p>Tetris</p>
+                        <h2>{game.name}</h2>
 
                         <div className="options">
                             <div className="allButton selected">All</div>

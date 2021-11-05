@@ -1,7 +1,6 @@
 import './register.scss'
-import { useRef, useContext } from 'react'
-import { AuthContext } from '../../context/AuthContext'
-import { CircularProgress } from '@mui/material'
+import { useRef } from 'react'
+// import { CircularProgress } from '@mui/material'
 import axios from 'axios'
 import { useHistory } from 'react-router'
 

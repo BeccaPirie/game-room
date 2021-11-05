@@ -1,0 +1,92 @@
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+.startPageContainer {
+    @include page-container;
+    height: calc(100vh - 70px);
+    justify-content: center;
+}
+
+.startContainer {
+    margin: auto;
+}
+
+.thumbnail {
+    width: 300px;
+}
+
+.rightContainer {
+    width: 300px;
+    text-align: center;
+    margin-top: 15px;
+    
+    h2 {
+        margin-bottom: 10px;
+    }
+}
+
+.gameBtns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center
+}
+
+.button {
+    @include button;
+    margin: 5px;
+}
+
+
+.leaderboardBtn {
+    background-color: $red;
+}
+
+.leaderboardBtn:hover {
+    background-color: $darkred;
+}
+
+.addFavouriteBtn {
+    background-color: rgb(243, 255, 136);
+}
+
+.addFavouriteBtn:hover {
+    background-color: rgb(232, 243, 130);
+}
+
+
+.playBtn {
+    background-color:  $green;
+}
+
+.playBtn:hover {
+    background-color:  $darkgreen;
+}
+
+@media (min-width: 700px)
+{
+    .startContainer {    
+        display: flex;
+        margin: auto;
+        box-shadow: 5px 5px 60px 10px #e9e8e8;
+        padding: 30px;
+        border-radius: 20px;
+    }
+
+    .thumbnail {
+        width: 400px;
+    }
+
+    .rightContainer {
+        margin-top: 80px;
+        margin-left: 30px;
+        width: fit-content;
+    
+        h2 {
+            margin-bottom: 10px;
+        }
+    }
+
+    .gameBtns {
+        display: block;
+    }
+}
