@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
+const Game = require("../models/Game")
 
 router.get("/test", (req, res) => {
     res.send("test")
@@ -141,6 +142,44 @@ router.get("/followers/:user", async (req, res) => {
     }
 })
 
+// get users favourite games
+router.get("/favourite-games/:user", async (req, res) => {
+    // const userId = req.query.userId;
+    // const username = req.query.username;
+    try {
+      const currentUser = 
+      await User.findOne({username: req.params.user}) || await User.findById(req.params.user);
+        const favouriteGames = await Promise.all(
+            currentUser.favGames.map((gameId) => {
+                return Game.findById(gameId)
+            })
+        );
+         res.status(200).json(favouriteGames);      
+    } catch (err) {
+        res.status(500).json(err);
+    }
+})
+
+// get users recently played games
+router.get("/recently-played-games/:user", async (req, res) => {
+    try {
+        const currentUser = 
+        await User.findOne({username: req.params.user}) || await User.findById(req.params.user);
+          const recentlyPlayedGames = await Promise.all(
+              currentUser.recentGames.map((gameId) => {
+                  return Game.findById(gameId)
+              })
+          );
+           res.status(200).json(recentlyPlayedGames);      
+      } catch (err) {
+          res.status(500).json(err);
+      }
+})
+
+//fav games
+// recent games
+// add game to favoruites
+// remove game from favourites
 // search users
 
 module.exports = router

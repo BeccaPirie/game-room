@@ -27,7 +27,7 @@ export default function Profile() {
 
     useEffect(()=> {
         const fetchFavouriteGames = async () => {
-            const res = await axios.get(`/games/favourite-games/${username}`)
+            const res = await axios.get(`/users/favourite-games/${username}`)
             console.log(res.data)
             setFavGames(res.data)
         }
@@ -36,7 +36,7 @@ export default function Profile() {
 
     useEffect(()=> {
         const fetchRecentGames = async () => {
-            const res = await axios.get(`/games/recently-played-games/${username}`)
+            const res = await axios.get(`/users/recently-played-games/${username}`)
             console.log(res.data)
             setRecentGames(res.data)
         }

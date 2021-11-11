@@ -3,6 +3,7 @@ import { useRef } from 'react'
 // import { CircularProgress } from '@mui/material'
 import axios from 'axios'
 import { useHistory } from 'react-router'
+import { Link } from 'react-router-dom';
 
 export default function Register() {
     const username = useRef()
@@ -67,7 +68,9 @@ export default function Register() {
                     ref={confirmPassword}
                 />
                 <button className="loginButton">Sign Up</button>
-                <button className="loginRegisterButton">Log into Account</button>
+                <Link to="/login">
+                    <button className="loginRegisterButton">Log into Account</button>
+                </Link>
             </form>
         </div>
     )

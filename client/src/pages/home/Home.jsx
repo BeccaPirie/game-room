@@ -16,7 +16,7 @@ export default function Home() {
 
     useEffect(()=> {
         const fetchFavouriteGames = async () => {
-            const res = await axios.get(`/games/favourite-games/${user.username}`)
+            const res = await axios.get(`/users/favourite-games/${user.username}`)
             console.log(res.data)
             setFavGames(res.data)
         }
@@ -25,7 +25,7 @@ export default function Home() {
 
     useEffect(()=> {
         const fetchRecentGames = async () => {
-            const res = await axios.get(`/games/recently-played-games/${user.username}`)
+            const res = await axios.get(`/users/recently-played-games/${user.username}`)
             console.log(res.data)
             setRecentGames(res.data)
         }
