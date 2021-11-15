@@ -7,23 +7,31 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 import { useParams } from "react-router"
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext'
 
 export default function Profile() {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const username = useParams().username;
+    const { user: user, dispatch } = useContext(AuthContext)
 
-    const [user, setUser] = useState({})
+    const [userProfile, setUserProfile] = useState({})
     const [favGames, setFavGames] = useState([])
     const [recentGames, setRecentGames] = useState([])
+    const [isFollowing, setIsFollowing] = useState(user.following.includes(userProfile?._id))
+    
+    useEffect(()=> {
+            const fetchUser = async () => {
+                const res = await axios.get(`/users?username=${username}`)
+                console.log(res.data)
+                setUserProfile(res.data)
+            }
+            fetchUser();
+        },[username])
 
     useEffect(()=> {
-        const fetchUser = async () => {
-            const res = await axios.get(`/users?username=${username}`)
-            console.log(res.data)
-            setUser(res.data)
-        }
-        fetchUser();
-    },[username])
+            setIsFollowing(user.following.includes(userProfile?._id))
+        }, [user, user.following, userProfile._id])
 
     useEffect(()=> {
         const fetchFavouriteGames = async () => {
@@ -41,7 +49,31 @@ export default function Profile() {
             setRecentGames(res.data)
         }
         fetchRecentGames();
-    },[username])    
+    },[username])
+    
+    const followHandler = async () => {
+        console.log("follow handler")
+        try {
+            if (isFollowing) {
+                console.log("unfollowing")
+            await axios.put(`/users/${userProfile._id}/unfollow`, {
+                userId: user._id
+            }) 
+            dispatch({ type: "UNFOLLOW", payload: userProfile._id });
+            }
+            else {
+                console.log("following")
+                await axios.put(`/users/${userProfile._id}/follow`, {
+                    userId: user._id
+                })
+                dispatch({ type: "FOLLOW", payload: userProfile._id });
+            }
+            setIsFollowing(!isFollowing)
+        }
+        catch(err) {
+
+        }    
+    }
 
     return (
         <div>
@@ -57,11 +89,17 @@ export default function Profile() {
                         <img src={user.profilePicture ? PF+user.profilePicture : PF+"profile-pic.jpg"} alt="" className="profileImg" />
                             <div className="userDetailsProfile">
                                 <div className="user">
-                                    <h4 className="username">{user.username}</h4>
-                                    <p className="userId">{user._id}</p>
+                                    <h4 className="username">{userProfile.username}</h4>
+                                    <p className="userId">{userProfile._id}</p>
                                 </div>
                                 <div className="userBtn">
-                                    <button className="button">following</button>
+                                    {
+                                        user.username !== userProfile.username
+                                        && <button className="button" onClick={followHandler}>
+                                                {isFollowing ? "following" : "follow"}
+                                            </button>
+                                    }
+                                    
                                 </div>
                             </div> 
                         </div>
@@ -73,16 +111,16 @@ export default function Profile() {
                             </div>
                             <div className="statsDiv followersDiv">
                                 <div className="statNumber">
-                                    <Link to={`/followers/${user.username}`}>
-                                        {user.followers ? user.followers.length : "0"}
+                                    <Link to={`/followers/${userProfile.username}`}>
+                                        {userProfile.followers ? userProfile.followers.length : "0"}
                                     </Link>
                                 </div>
                                 <div className="statWording">Followers</div>
                             </div>
                             <div className="statsDiv followingDiv">
                                 <div className="statNumber">
-                                    <Link to={`/following/${user.username}`}>
-                                        {user.following? user.following.length : "0"}
+                                    <Link to={`/following/${userProfile.username}`}>
+                                        {userProfile.following? userProfile.following.length : "0"}
                                     </Link>
                                 </div>
                                 <div className="statWording">Following</div>

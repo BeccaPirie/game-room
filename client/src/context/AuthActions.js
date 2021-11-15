@@ -1,5 +1,6 @@
-export const LoginStart = (userCredentials) => ({
+export const LoginStart = (user) => ({
     type:"LOGIN_START",
+    payload: user,
 })
 
 export const LoginSuccess = (user) => ({
@@ -7,7 +8,16 @@ export const LoginSuccess = (user) => ({
     payload: user,
 })
 
-export const LoginFailure = (error) => ({
-    type:"LOGIN_FAILURE",
-    payload: error,
+export const LoginFailure = () => ({
+    type:"LOGIN_FAILURE"
+})
+
+export const Follow = (userId) => ({
+    type: "FOLLOW",
+    payload: userId,
+})
+  
+export const Unfollow = (userId) => ({
+    type: "UNFOLLOW",
+    payload: userId,
 })
