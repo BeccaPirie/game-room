@@ -25,4 +25,14 @@
 
 .friendActivityLastPlayed {
     color: grey;
+
+    a {
+        @include link-text;
+        color: grey;
+        font-weight: 500;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
 }
