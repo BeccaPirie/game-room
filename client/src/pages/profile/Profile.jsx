@@ -3,11 +3,10 @@ import Navbar from "../../components/navbar/Navbar";
 import Rightbar from "../../components/rightbar/Rightbar";
 import TopScores from "../../components/topScores/TopScores";
 import GamesDisplay from "../../components/gamesDisplay/GamesDisplay";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from 'axios';
 import { useParams } from "react-router"
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext'
 
 export default function Profile() {
