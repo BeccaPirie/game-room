@@ -72,6 +72,14 @@ const AuthReducer = (state, action) => {
                 )
               }
             };
+            case "LASTPLAYED":
+              return {
+                ...state,
+                user: {
+                  ...state.user,
+                  lastPlayed: action.payload
+                }
+              };
         default:
             return state;
     }

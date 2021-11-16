@@ -58,6 +58,11 @@ export default function Start() {
             })
             dispatch({ type: "ADDTORECENTLYPLAYED", payload: game._id })
             setIsRecentPlayed(true)
+
+            await axios.put(`/users/${game._id}/last-played`, {
+                userId: user._id
+            })  
+            dispatch({ type: "LASTPLAYED", payload: game._id})
         }
         catch(err) {
 

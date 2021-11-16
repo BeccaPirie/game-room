@@ -41,3 +41,8 @@ export const RemoveFromRecentlyPlayed = (userId) => ({
     type: "REMOVEFROMRECENTLYPLAYED",
     payload: userId,
 })
+
+export const LastPlayed = (userId) => ({
+    type: "LASTPLAYED",
+    payload: userId,
+})

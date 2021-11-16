@@ -240,6 +240,18 @@ router.put("/:gameId/remove-from-recently-played", async (req, res) => {
     }
 })
 
+// add game to last played
+router.put("/:gameId/last-played", async (req, res) => {
+    try {
+        const user = await User.findById(req.body.userId)
+        await user.updateOne({$set:{lastPlayed:req.params.gameId}})
+        res.status(200).json("Game set to last played")
+    }
+    catch(err) {
+        res.status(500).json(err)
+    }
+})
+
 // search users
 
 module.exports = router
