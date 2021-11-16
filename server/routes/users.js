@@ -213,7 +213,12 @@ router.put("/:gameId/remove-from-favourites", async (req, res) => {
 router.put("/:gameId/add-to-recently-played", async (req, res) => {
     try {
         const user = await User.findById(req.body.userId)
-        await user.updateOne({$push:{recentGames:req.params.gameId}})
+        await user.updateOne({$push:
+            {recentGames:{
+                $each:[req.params.gameId],
+                $position:0,
+                $slice:10
+            }}})
         res.status(200).json("Game added to recently played")     
     }
     catch(err) {
