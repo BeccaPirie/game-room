@@ -85,7 +85,7 @@ export default function Profile() {
                     <div className="userInformation">
 
                         <div className="userDiv">
-                        <img src={user.profilePicture ? PF+user.profilePicture : PF+"profile-pic.jpg"} alt="" className="profileImg" />
+                        <img src={userProfile.profilePicture ? PF+userProfile.profilePicture : PF+"profile-pic.jpg"} alt="" className="profileImg" />
                             <div className="userDetailsProfile">
                                 <div className="user">
                                     <h4 className="username">{userProfile.username}</h4>
@@ -105,7 +105,7 @@ export default function Profile() {
                         
                         <div className="userStats">
                             <div className="statsDiv pointsDiv">
-                                <div className="statNumber">{user.points}</div>
+                                <div className="statNumber">{userProfile.points}</div>
                                 <div className="statWording">Points</div>
                             </div>
                             <div className="statsDiv followersDiv">
@@ -139,9 +139,9 @@ export default function Profile() {
 
                     <div className="userTopScores">
                         <p>Top Scores</p>
-                        <TopScores/>
-                        <TopScores />
-                        <TopScores />
+                        {userProfile.topScores && userProfile.topScores.map((topScore) => {
+                            return <TopScores key={topScore.gameId} topScore={topScore}/>
+                        })}
                     </div>
 
                 </div>

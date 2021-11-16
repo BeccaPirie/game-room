@@ -1,14 +1,27 @@
 import './topScores.scss';
+import { useState, useEffect } from "react";
+import axios from 'axios';
 
-export default function TopScores() {
+export default function TopScores({ topScore }) {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+    
+    const [game, setGame] = useState({})
+
+    useEffect(() => {
+        const fetchGame = async () => {
+            const res = await axios.get(`/games/${topScore.gameId}`)
+            console.log(res.data)
+            setGame(res.data)
+        }
+        fetchGame()
+    },[topScore])
 
     return (
         <div className="topScoresItem">
-            <img src={`${PF}profile-pic.jpg`} alt="" className="gameThumbnail" />
+            <img src={game.thumbnail ? PF+game.thumbnail : PF+"profile-pic.jpg"} alt="" className="gameThumbnail" />
             <div className="topScoreText">
-                <span className="gameTitle">Tetris</span>
-                <span className="score">123</span>
+                <span className="gameTitle">{game.name}</span>
+                <span className="score">{topScore.score}</span>
             </div>
         </div>
     )

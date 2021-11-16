@@ -49,7 +49,7 @@ const UserSchema = new mongoose.Schema({
     },
     topScores:{
         type:Object,
-        default:{}
+        default:[]
     },
     isAdmin:{
         type:Boolean,
