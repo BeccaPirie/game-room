@@ -176,10 +176,39 @@ router.get("/recently-played-games/:user", async (req, res) => {
       }
 })
 
-//fav games
-// recent games
-// add game to favoruites
+// add game to favourites
+router.put("/:gameId/add-to-favourites", async (req, res) => {
+    try {
+        const user = await User.findById(req.body.userId)
+        if(!user.favGames.includes(req.params.gameId)) {
+            await user.updateOne({$push:{favGames:req.params.gameId}})
+            res.status(200).json("Game has been added to favourites")
+        } else {
+            res.status(403).json("This game is already in your favourites")
+        }
+    }
+    catch(err) {
+        res.status(500).json(err)
+    }
+})
+
 // remove game from favourites
+router.put("/:gameId/remove-from-favourites", async (req, res) => {
+    try {
+        const user = await User.findById(req.body.userId)
+        if(user.favGames.includes(req.params.gameId)) {
+            await user.updateOne({$pull:{favGames:req.params.gameId}})
+            res.status(200).json("Game has been removed from favourites")
+        }
+        else {
+            res.status(403).json("This game is not in your favourites")
+        }
+    }
+    catch(err) {
+        res.status(500).json(err)
+    }
+})
+
 // search users
 
 module.exports = router

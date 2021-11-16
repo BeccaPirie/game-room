@@ -36,6 +36,24 @@ const AuthReducer = (state, action) => {
                 ),
               },
             };
+          case "FAVOURITE":
+            return {
+              ...state,
+              user: {
+                ...state.user,
+                favGames: [...state.user.favGames, action.payload],
+              }
+            };
+          case "UNFAVOURITE":
+            return {
+              ...state,
+              user: {
+                ...state.user,
+                favGames: state.user.favGames.filter(
+                  (favGame) => favGame !== action.payload
+                )
+              }
+            };
         default:
             return state;
     }

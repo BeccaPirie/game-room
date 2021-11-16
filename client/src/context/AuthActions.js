@@ -21,3 +21,13 @@ export const Unfollow = (userId) => ({
     type: "UNFOLLOW",
     payload: userId,
 })
+
+export const Favourite = (userId) => ({
+    type: "FAVOURITE",
+    payload: userId,
+})
+
+export const Unfavourite = (userId) => ({
+    type: "UNFAVOURITE",
+    payload: userId,
+})

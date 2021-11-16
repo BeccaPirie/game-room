@@ -1,14 +1,20 @@
 import './start.scss'
 import Navbar from '../../components/navbar/Navbar'
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from 'axios';
 import { useParams } from "react-router"
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext'
 
 export default function Start() {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const gameId = useParams().gameId;
+    const {user: user, dispatch} = useContext(AuthContext)
+
     const [game, setGame] = useState({})
+    const [isFavourite, setIsFavourite] = useState(user.favGames.includes(gameId))
+    console.log(user.favGames)
+    console.log(isFavourite)
 
     useEffect(() => {
         const fetchGame = async () => {
@@ -18,6 +24,27 @@ export default function Start() {
         }
         fetchGame()
     },[gameId])
+
+    const favouriteHandler = async () => {
+        try {
+            if(isFavourite) {
+                await axios.put(`/users/${game._id}/remove-from-favourites`, {
+                    userId: user._id
+                })
+                dispatch({ type: "UNFAVOURITE", payload: game._id })
+            }
+            else {
+                await axios.put(`/users/${game._id}/add-to-favourites`, {
+                    userId: user._id
+                })
+                dispatch({ type: "FAVOURITE", payload: game._id })
+            }
+            setIsFavourite(!isFavourite)
+        }
+        catch(err) {
+
+        }
+    }
 
     return (
         <>
@@ -36,9 +63,9 @@ export default function Start() {
                                 {/* </Link> */}
                             </div>
                             <div>
-                                {/* <Link to={}>  */}
-                                    <button className="button addFavouriteBtn">Add to favourites</button>  
-                                {/* </Link> */}
+                                <button className="button addFavouriteBtn" onClick={favouriteHandler}>
+                                    {isFavourite ? "Remove from favourites" : "Add to favourites"}
+                                </button>  
                             </div>
                             <div>
                                 <Link to={`/leaderboard/${game._id}`}> 
