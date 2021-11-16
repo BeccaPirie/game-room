@@ -54,6 +54,24 @@ const AuthReducer = (state, action) => {
                 )
               }
             };
+          case "ADDTORECENTLYPLAYED":
+            return {
+              ...state,
+              user: {
+                ...state.user,
+                recentGames: [...state.user.recentGames, action.payload]
+              }
+            };
+          case "REMOVEFROMRECENTLYPLAYED":
+            return {
+              ...state,
+              user: {
+                ...state.user,
+                recentGames: state.user.recentGames.filter(
+                  (recentGame) => recentGame !== action.payload
+                )
+              }
+            };
         default:
             return state;
     }

@@ -209,6 +209,32 @@ router.put("/:gameId/remove-from-favourites", async (req, res) => {
     }
 })
 
+// add game to recently played
+router.put("/:gameId/add-to-recently-played", async (req, res) => {
+    try {
+        const user = await User.findById(req.body.userId)
+        await user.updateOne({$push:{recentGames:req.params.gameId}})
+        res.status(200).json("Game added to recently played")     
+    }
+    catch(err) {
+        res.status(500).json(err)
+    }
+})
+
+// remove game from recently played
+router.put("/:gameId/remove-from-recently-played", async (req, res) => {
+    try {
+        const user = await User.findById(req.body.userId)
+        if(user.recentGames.includes(req.params.gameId)) {
+            await user.updateOne({$pull:{recentGames:req.params.gameId}})
+            res.status(200).json("Game removed from recently played")
+        }
+    }
+    catch(err) {
+        res.status(500).json(err)
+    }
+})
+
 // search users
 
 module.exports = router

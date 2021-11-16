@@ -31,3 +31,13 @@ export const Unfavourite = (userId) => ({
     type: "UNFAVOURITE",
     payload: userId,
 })
+
+export const AddToRecentlyPlayed = (userId) => ({
+    type: "ADDTORECENTLYPLAYED",
+    payload: userId,
+})
+
+export const RemoveFromRecentlyPlayed = (userId) => ({
+    type: "REMOVEFROMRECENTLYPLAYED",
+    payload: userId,
+})

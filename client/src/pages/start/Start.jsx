@@ -13,8 +13,7 @@ export default function Start() {
 
     const [game, setGame] = useState({})
     const [isFavourite, setIsFavourite] = useState(user.favGames.includes(gameId))
-    console.log(user.favGames)
-    console.log(isFavourite)
+    const [isRecentPlayed, setIsRecentPlayed] = useState(user.recentGames.includes(gameId))
 
     useEffect(() => {
         const fetchGame = async () => {
@@ -46,6 +45,25 @@ export default function Start() {
         }
     }
 
+    const recentlyPlayedHandler = async () => {
+        try {
+            if(isRecentPlayed) {
+                await axios.put(`/users/${game._id}/remove-from-recently-played`, {
+                    userId: user._id
+                })
+                dispatch({ type: "REMOVEFROMRECENTLYPLAYED", payload: game._id})
+            }
+            await axios.put(`/users/${game._id}/add-to-recently-played`, {
+                userId: user._id
+            })
+            dispatch({ type: "ADDTORECENTLYPLAYED", payload: game._id })
+            setIsRecentPlayed(true)
+        }
+        catch(err) {
+
+        }
+    }
+
     return (
         <>
            <Navbar />
@@ -59,7 +77,7 @@ export default function Start() {
                         <div className="gameBtns">
                             <div>
                                 {/* <Link to={}>  */}
-                                    <button className="button playBtn">Play</button>
+                                    <button className="button playBtn" onClick={recentlyPlayedHandler}>Play</button>
                                 {/* </Link> */}
                             </div>
                             <div>
