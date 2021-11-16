@@ -85,7 +85,7 @@ export default function Profile() {
                     <div className="userInformation">
 
                         <div className="userDiv">
-                        <img src={userProfile.profilePicture ? PF+userProfile.profilePicture : PF+"profile-pic.jpg"} alt="" className="profileImg" />
+                        <img src={userProfile.profilePicture ? PF+userProfile.profilePicture : PF+"no-avatar.png"} alt="" className="profileImg" />
                             <div className="userDetailsProfile">
                                 <div className="user">
                                     <h4 className="username">{userProfile.username}</h4>

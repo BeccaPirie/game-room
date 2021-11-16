@@ -39,7 +39,7 @@ export default function UserListItem({ user }) {
 
     return (
         <div className="userListItem">
-            <img src={user.profilePicture ? PF+user.profilePicture : PF+"profile-pic.jpg"} alt="" className="profile-thumbnail" />
+            <img src={user.profilePicture ? PF+user.profilePicture : PF+"no-avatar.png"} alt="" className="profile-thumbnail" />
             <div className="userDetails">
                 <span className="itemUsername">
                     <Link to={`/profile/${user.username}`}>

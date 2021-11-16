@@ -70,7 +70,7 @@ export default function Start() {
            <div className="startPageContainer">
                 <div className="startContainer">
                     <div className="leftContainer">
-                       <img src={game.thumbnail ? PF+game.thumbnail : PF+"profile-pic.jpg"} alt="" className="thumbnail" /> 
+                       <img src={game.thumbnail ? PF+game.thumbnail : PF+"no-image.jpg"} alt="" className="thumbnail" /> 
                     </div>
                     <div className="rightContainer">
                         <h2>{game.name}</h2>

@@ -23,7 +23,7 @@ export default function FriendActivity({ user }) {
 
     return (
         <li className="friendActivityListItem">
-            <img src={user.profilePicture ? PF+user.profilePicture : PF+"profile-pic.jpg"} alt="" className="friendActivityProfileImg" />
+            <img src={user.profilePicture ? PF+user.profilePicture : PF+"no-avatar.png"} alt="" className="friendActivityProfileImg" />
             <div className="friendActivityDetails">
             
                 <div className="friendActivityUsername">

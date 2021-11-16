@@ -25,7 +25,7 @@ export default function Navbar() {
             <div className="navbarCentre"></div>
             <div className="navbarRight">
                 <div className="accountBtn" onClick={dropdownHandler}>
-                    <img src={user.profilePicture ? PF+user.profilePicture : PF+"profile-pic.jpg"} alt="" className="accountProfilePicture" />
+                    <img src={user.profilePicture ? PF+user.profilePicture : PF+"no-avatar.png"} alt="" className="accountProfilePicture" />
                     <span className="accountUsername">{user.username}</span>
                     <span className="arrow">
                         {showDropdown ? <ArrowDropUp/> : <ArrowDropDown/>}   

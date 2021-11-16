@@ -13,6 +13,10 @@
     width: 80%;
     margin: 40px auto;
     font-size: 30px;
+
+    a {
+        @include link-text;
+    }
 }
 
 .gamesDiv {

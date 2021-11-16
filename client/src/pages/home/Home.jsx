@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext'
+import { Link } from "react-router-dom"
 
 export default function Home() {
     const [favGames, setFavGames] = useState([])
@@ -47,7 +48,7 @@ export default function Home() {
             <Navbar/>
             <div className="homeContainer">
                 <div className="gamesContainer">
-                    <div className="welcome">Welcome back <b>{user.username}</b></div>
+                    <div className="welcome">Welcome back <Link to={`/profile/${user.username}`}><b>{user.username}</b></Link></div>
 
                     <div className="gamesDiv">
                         <p>Your Favourite Games</p>

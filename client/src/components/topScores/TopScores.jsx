@@ -18,7 +18,7 @@ export default function TopScores({ topScore }) {
 
     return (
         <div className="topScoresItem">
-            <img src={game.thumbnail ? PF+game.thumbnail : PF+"profile-pic.jpg"} alt="" className="gameThumbnail" />
+            <img src={game.thumbnail ? PF+game.thumbnail : PF+"no-image.jpg"} alt="" className="gameThumbnail" />
             <div className="topScoreText">
                 <span className="gameTitle">{game.name}</span>
                 <span className="score">{topScore.score}</span>
