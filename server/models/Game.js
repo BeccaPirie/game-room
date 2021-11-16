@@ -11,6 +11,10 @@ const GameSchema = new mongoose.Schema({
     thumbnail:{
         type:String,
         default:""
+    },
+    scores:{
+        type:Array,
+        default:[]
     }
 },
 {timestamps:true}

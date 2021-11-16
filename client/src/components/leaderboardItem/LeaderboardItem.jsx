@@ -1,15 +1,28 @@
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 import './leaderboardItem.scss'
 
-export default function Leaderboard() {
+export default function Leaderboard({ item, listNumber }) {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
+    const [user, setUser] = useState({})
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            const res = await axios.get(`/users?userId=${item.userId}`)
+            console.log(res.data)
+            setUser(res.data)
+        }
+        fetchUser()
+    }, [item])
     
     return (
         <div className="leaderboardListItem">
-            <p className="listNumber">1</p>
-            <img src={`${PF}profile-pic.jpg`} alt="" className="itemThumbnail" />
+            <p className="listNumber">{listNumber}</p>
+            <img src={user.profilePicture ? PF+user.profilePicture : PF+"no-avatar.png"} alt="" className="itemThumbnail" />
             <div className="leaderboardText">
-                <span className="leaderboardUsername">becca_pirie</span>
-                <span className="leaderboardScore">123</span>
+                <span className="leaderboardUsername">{user.username}</span>
+                <span className="leaderboardScore">{item.score}</span>
             </div>
         </div>
     )
