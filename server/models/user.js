@@ -32,8 +32,8 @@ const UserSchema = new mongoose.Schema({
         default:[]
     },
     points:{
-        type:String,
-        default:"0"
+        type:Number,
+        default:0
     },
     lastPlayed:{
         type:String,

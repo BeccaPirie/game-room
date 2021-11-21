@@ -252,6 +252,18 @@ router.put("/:gameId/last-played", async (req, res) => {
     }
 })
 
+// update points
+router.put("/add-user-points/:points", async (req, res) => {
+    try {
+        const user = await User.findById(req.body.userId)
+        await user.updateOne({$inc:{points:req.params.points}})
+        res.status(200).json("Points updated")
+    }
+    catch(err) {
+        res.status(500).json(err)
+    }
+})
+
 // search users
 
 module.exports = router

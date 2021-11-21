@@ -105,7 +105,7 @@ export default function Profile() {
                         
                         <div className="userStats">
                             <div className="statsDiv pointsDiv">
-                                <div className="statNumber">{userProfile.points}</div>
+                                <div className="statNumber">{parseInt(userProfile.points)}</div>
                                 <div className="statWording">Points</div>
                             </div>
                             <div className="statsDiv followersDiv">
