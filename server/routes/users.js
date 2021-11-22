@@ -264,6 +264,28 @@ router.put("/add-user-points/:points", async (req, res) => {
     }
 })
 
+// update top score
+router.put("/update-top-score/:topScore", async(req, res) => {
+    try {
+        const user = await User.findById(req.body.userId)
+        const score = user.topScores.find(topScore => topScore.gameId === req.body.gameId)
+        if(score !== undefined) {
+            await score.updateOne({$set:{score: req.params.topScore}}) 
+            res.status(200).json("Top score updated")
+        }
+        else {
+            await user.topScores.updateOne({$push:{
+                    gameId:req.body.gameId, 
+                    score:req.params.topScore 
+                }})
+            res.status(200).json("Top score added")
+        }
+    }
+    catch(err) {
+        res.status(500).json(err)
+    }
+})
+
 // search users
 
 module.exports = router
