@@ -10,6 +10,7 @@ import Following from './pages/following/Following';
 import Start from './pages/start/Start';
 import { useContext } from 'react';
 import { AuthContext } from './context/AuthContext';
+import Edit from './pages/edit/Edit';
 
 function App() {
 
@@ -40,6 +41,9 @@ function App() {
         </Route>
         <Route path='/following/:username'>
           <Following />
+        </Route>
+        <Route path='/edit'>
+          <Edit />
         </Route>
         <Route path='/start/:gameId'>
           <Start />

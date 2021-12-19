@@ -94,11 +94,13 @@ export default function Profile() {
                                 <div className="userBtn">
                                     {
                                         user.username !== userProfile.username
-                                        && <button className="button" onClick={followHandler}>
+                                        ? <button className="button" onClick={followHandler}>
                                                 {isFollowing ? "following" : "follow"}
                                             </button>
+                                        : <Link to='/edit'>
+                                            <button>Edit</button>
+                                        </Link>
                                     }
-                                    
                                 </div>
                             </div> 
                         </div>

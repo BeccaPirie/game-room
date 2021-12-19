@@ -1,0 +1,88 @@
+@import '../../scss//mixins';
+@import '../../scss/variables';
+
+.editContainer {
+    @include page-container;
+}
+
+.editProfileContainer {
+    @include main-container;
+    display: block;
+}
+
+.updateAccount, .updatePassword {
+    margin: 30px auto;
+    width: 60%;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.updatePassword {
+    margin: auto;
+    width: 60%;
+    height: 270px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.editProfilePicture {
+    display: flex;
+}
+
+.profilePhotoDiv {
+    padding: 20px;
+
+    img {
+        @include profile-photo;
+        width: 180px;
+    } 
+}
+
+.changeProfilePicture {
+    margin-top: 100px;
+
+    label {
+        cursor: pointer;
+        font-weight: 500;
+        color: rgb(6, 176, 243);
+    }
+
+    label:hover {
+        text-decoration: underline;
+    }
+}
+
+.updateInput {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid gray;
+    font-size: 12px;
+    padding-left: 10px;
+}
+
+.updateInput:focus {
+    outline: none;
+}
+
+.updateAccountBtn, .updatePasswordBtn{
+    width: fit-content;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: $green;
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.updateAccountBtn:focus, .updatePasswordBtn:focus {
+    outline: none;
+}
+
+.updateAccountBtn:disabled, .updatePasswordBtn:disabled {
+    cursor: not-allowed;
+}

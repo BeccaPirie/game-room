@@ -47,7 +47,6 @@ export default function Register() {
                 <input
                     type="email"
                     required
-                    re
                     placeholder="Email"
                     className="loginInput"
                     ref={email}
