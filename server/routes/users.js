@@ -21,7 +21,11 @@ router.put("/:id", async(req, res) => {
         }
         try{
             const user = await User.findByIdAndUpdate(req.params.id, {
-                $set: req.body,
+                $set: {
+                    username: req.body.username,
+                    email: req.body.email,
+                    profilePicture: req.body.profilePicture
+                }
             });
             res.status(200).json("Account has been updated")
         }

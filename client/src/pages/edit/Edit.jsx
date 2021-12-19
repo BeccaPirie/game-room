@@ -1,23 +1,45 @@
 import Navbar from "../../components/navbar/Navbar";
 import Rightbar from "../../components/rightbar/Rightbar";
 import "./edit.scss";
-import { useState, useContext, useRef } from "react";
+import { useState, useContext } from "react";
 import { AuthContext } from '../../context/AuthContext'
+import axios from "axios";
 
 export default function Edit() {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const { user: user, dispatch } = useContext(AuthContext)
     const [file, setFile] = useState(null)
-
-    const profilePic = useRef()
-    const username = useRef()
-    const email = useRef()
-    const oldPassword = useRef()
-    const newPassword = useRef()
-    const confirmPassword = useRef()
+    const [username, setUsername] = useState(user.username)
+    const [email, setEmail] = useState(user.email)
+    const [profilePicture, setProfilePicture] = useState(user.profilePicture)
 
     const updateProfileClick = async (e) => {
-        e.preventDefault() 
+        e.preventDefault()
+        
+        if(file) {
+            const data = new FormData()
+            const fileName = Date.now() + file.name
+            data.append("name", fileName)
+            data.append("file", file)
+            console.log(fileName)
+            setProfilePicture(file.name)
+            console.log(profilePicture)
+            try {
+                await axios.post("/upload", data)
+            }
+            catch(err) {
+
+            }
+        }
+
+        await axios.put(`users/${user._id}`, {
+            userId: user._id,
+            username: username,
+            email: email,
+            profilePicture: profilePicture
+        })
+        dispatch({ type: "UPDATEPROFILE", payload: user})
+        window.location.reload()
     }
 
     const updatePasswordClick = async (e) => {
@@ -49,19 +71,17 @@ export default function Edit() {
                                         id="file"
                                         accept=".png, .jpg, .jpeg"
                                         onChange={(e) => setFile(e.target.files[0])}
-                                        ref={profilePic}
                                     />
                                 </label>
                             </div>
                         </div>
 
-                        
-
                         <label htmlFor="updateUsername">Username</label>
                         <input
                             id="updateUsername"
                             className="updateInput"
-                            ref={username}
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
                         />
 
                         <label htmlFor="updateEmail">Email</label>
@@ -69,7 +89,8 @@ export default function Edit() {
                             type="email"
                             id="updateEmail"
                             className="updateInput"
-                            ref={email}
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
 
                         <button className="updateAccountBtn">
@@ -84,7 +105,7 @@ export default function Edit() {
                             type="password"
                             id="oldPasswordInput"
                             className="updateInput"
-                            ref={oldPassword}
+                            // ref={oldPassword}
                         />
 
                         <label htmlFor="newPassword">New Password</label>
@@ -92,7 +113,7 @@ export default function Edit() {
                             type="password"
                             id="newPasswordInput"
                             className="updateInput"
-                            ref={newPassword}
+                            // ref={newPassword}
                         />
 
                         <label htmlFor="ConfirmPassword">Confirm Password</label>
@@ -100,7 +121,7 @@ export default function Edit() {
                             type="password"
                             id="oldPasswordInput"
                             className="updateInput"
-                            ref={confirmPassword}
+                            // ref={confirmPassword}
                         />
 
                         <button className="updatePasswordBtn">

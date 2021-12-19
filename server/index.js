@@ -8,6 +8,8 @@ const indexRoute = require("./routes/index")
 const userRoute = require("./routes/users")
 const authRoute = require("./routes/auth")
 const gameRoute = require("./routes/games")
+const multer = require("multer")
+const path = require("path")
 
 dotenv.config();
 
@@ -20,10 +22,31 @@ db.once("open", function () {
     console.log("Connected successfully");
 });
 
+app.use("/images", express.static(path.join(__dirname, "public/images")))
+
 //middleware
 app.use(express.json());
 app.use(helment());
 app.use(morgan("common"));
+
+const storage = multer.diskStorage({
+    destination:(req, file, cb ) => {
+        cb(null, "public/images")
+    },
+    filename: (req, file, cb) => {
+        cb(null, req.body.name)
+    }
+})
+
+const upload = multer({ storage: storage });
+app.post("/server/upload", upload.single("file"), (req, res) => {
+    try{
+        return res.status(200).json("File uploaded successfully")
+    }
+    catch(err) {
+        console.log(err)
+    }
+})
 
 app.use('/', indexRoute);
 app.use("/server/users", userRoute);

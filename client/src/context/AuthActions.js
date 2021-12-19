@@ -46,3 +46,8 @@ export const LastPlayed = (userId) => ({
     type: "LASTPLAYED",
     payload: userId,
 })
+
+export const UpdateProfile = (user) => ({
+    type: "UPDATEPROFILE",
+    payload: user,
+})

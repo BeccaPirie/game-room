@@ -80,6 +80,11 @@ const AuthReducer = (state, action) => {
                   lastPlayed: action.payload
                 }
               };
+              case "UPDATEPROFILE":
+                return {
+                  ...state,
+                  user: action.payload
+                };
         default:
             return state;
     }
