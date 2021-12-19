@@ -287,5 +287,15 @@ router.put("/update-top-score/:topScore", async(req, res) => {
 })
 
 // search users
+router.get("/getUsers/:search", async(req, res) => {
+    try{
+        const searchTerm = req.params.search
+        const users = await User.find({username: searchTerm});
+        res.status(200).json(users);
+    }
+    catch(err){
+        res.status(500).json(err);
+    }
+});
 
 module.exports = router
