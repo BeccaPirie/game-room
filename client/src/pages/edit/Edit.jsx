@@ -32,13 +32,16 @@ export default function Edit() {
             }
         }
 
-        await axios.put(`users/${user._id}`, {
-            userId: user._id,
+        const updatedUser = {
+            ... user,
             username: username,
             email: email,
-            profilePicture: profilePicture
-        })
-        dispatch({ type: "UPDATEPROFILE", payload: user})
+            profilePicture: profilePicture,
+        }
+
+        await axios.put(`users/${user._id}`, updatedUser)
+        console.log(user)
+        dispatch({ type: "UPDATEPROFILE", payload: updatedUser})
         window.location.reload()
     }
 

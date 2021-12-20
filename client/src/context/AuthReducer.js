@@ -82,10 +82,11 @@ const AuthReducer = (state, action) => {
               };
               case "UPDATEPROFILE":
                 return {
-                  ...state,
-                  user: action.payload
+                  user: action.payload,
+                  isFetching: false,
+                  error: false,
                 };
-        default:
+            default:
             return state;
     }
 }
