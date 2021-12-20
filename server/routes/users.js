@@ -10,17 +10,8 @@ router.get("/test", (req, res) => {
 // update user
 router.put("/:id", async(req, res) => {
     if(req.body._id == req.params.id || req.body.isAdmin){
-        if(req.body.password){
-            try{
-                const salt = await bcrypt.genSalt(10);
-                req.body.password = await bcrypt.hash(req.body.password, salt);
-            }
-            catch(err){
-                return res.status(500).json(err);
-            }
-        }
         try{
-            const user = await User.findByIdAndUpdate(req.params.id, {
+            await User.findByIdAndUpdate(req.params.id, {
                 $set: {
                     username: req.body.username,
                     email: req.body.email,
@@ -28,6 +19,36 @@ router.put("/:id", async(req, res) => {
                 }
             });
             res.status(200).json("Account has been updated")
+        }
+        catch(err){
+            return res.status(500).json(err);
+        }
+    } else {
+        return res.status(403).json("You can only update your account")
+    }
+});
+
+// update user password
+router.put("/updatePassword/:id", async(req,res) => {
+    if(req.body.userId == req.params.id || req.body.isAdmin){
+        try{
+            const user = await User.findById(req.params.id)
+            const validPassword = await bcrypt.compare(req.body.oldPassword, user.password);
+
+            if(!validPassword) {
+                res.status(400).json("wrong password");
+            }
+            else {
+                const salt = await bcrypt.genSalt(10);
+                const newPassword = await bcrypt.hash(req.body.newPassword, salt);
+
+                await User.findByIdAndUpdate(req.params.id, {
+                    $set: {
+                        password: newPassword
+                    }
+                });
+                res.status(200).json("Password has been updated")  
+            }
         }
         catch(err){
             return res.status(500).json(err);

@@ -1,7 +1,7 @@
 import Navbar from "../../components/navbar/Navbar";
 import Rightbar from "../../components/rightbar/Rightbar";
 import "./edit.scss";
-import { useState, useContext } from "react";
+import { useState, useContext, useRef } from "react";
 import { AuthContext } from '../../context/AuthContext'
 import axios from "axios";
 
@@ -12,6 +12,9 @@ export default function Edit() {
     const [username, setUsername] = useState(user.username)
     const [email, setEmail] = useState(user.email)
     const [profilePicture, setProfilePicture] = useState(user.profilePicture)
+    const oldPassword = useRef()
+    const newPassword = useRef()
+    const confirmPassword = useRef()
 
     const updateProfileClick = async (e) => {
         e.preventDefault()
@@ -40,13 +43,26 @@ export default function Edit() {
         }
 
         await axios.put(`users/${user._id}`, updatedUser)
-        console.log(user)
         dispatch({ type: "UPDATEPROFILE", payload: updatedUser})
         window.location.reload()
     }
 
     const updatePasswordClick = async (e) => {
         e.preventDefault() 
+        if(newPassword.current.value !== confirmPassword.current.value) {
+            confirmPassword.current.setCustomValidity("Passwords don't match")
+        }
+        else {
+            const updatedUser = {
+                userId: user._id,
+                oldPassword: oldPassword.current.value,
+                newPassword: newPassword.current.value
+            }
+
+            await axios.put(`users/updatePassword/${user._id}`, updatedUser)
+            dispatch({type: "UPDATEPASSWORD", payload: newPassword}) //*** */
+            window.location.reload()
+        }
     }
 
     return (
@@ -108,7 +124,7 @@ export default function Edit() {
                             type="password"
                             id="oldPasswordInput"
                             className="updateInput"
-                            // ref={oldPassword}
+                            ref={oldPassword}
                         />
 
                         <label htmlFor="newPassword">New Password</label>
@@ -116,7 +132,7 @@ export default function Edit() {
                             type="password"
                             id="newPasswordInput"
                             className="updateInput"
-                            // ref={newPassword}
+                            ref={newPassword}
                         />
 
                         <label htmlFor="ConfirmPassword">Confirm Password</label>
@@ -124,7 +140,7 @@ export default function Edit() {
                             type="password"
                             id="oldPasswordInput"
                             className="updateInput"
-                            // ref={confirmPassword}
+                            ref={confirmPassword}
                         />
 
                         <button className="updatePasswordBtn">

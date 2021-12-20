@@ -51,3 +51,8 @@ export const UpdateProfile = (user) => ({
     type: "UPDATEPROFILE",
     payload: user,
 })
+
+export const UpdatePassword = (password) => ({
+    type: "UPDATEPASSWORD",
+    payload: password,
+})

@@ -80,11 +80,19 @@ const AuthReducer = (state, action) => {
                   lastPlayed: action.payload
                 }
               };
-              case "UPDATEPROFILE":
+            case "UPDATEPROFILE":
+              return {
+                user: action.payload,
+                isFetching: false,
+                error: false,
+              };
+              case "UPDATEPASSWORD":
                 return {
-                  user: action.payload,
-                  isFetching: false,
-                  error: false,
+                  ...state,
+                  user: {
+                    ...state.user,
+                    password: action.payload
+                  }
                 };
             default:
             return state;
