@@ -46,9 +46,10 @@ export default function UserListItem({ user }) {
                         {user.username}
                     </Link>
                 </span>
+                {user.username !== currentUser.username && 
                 <button className="followBtn" onClick={followHandler}>
                     {isFollowing ? "following" : "follow"}
-                </button>
+                </button>}
             </div>
         </div>
     )
