@@ -18,28 +18,26 @@ export default function Edit() {
 
     const updateProfileClick = async (e) => {
         e.preventDefault()
+
+        const updatedUser = {
+            ... user,
+            username: username,
+            email: email,
+        }
         
         if(file) {
             const data = new FormData()
             const fileName = Date.now() + file.name
             data.append("name", fileName)
             data.append("file", file)
-            console.log(fileName)
-            setProfilePicture(file.name)
-            console.log(profilePicture)
+            setProfilePicture(fileName)
+            updatedUser.profilePicture = fileName
             try {
                 await axios.post("/upload", data)
             }
             catch(err) {
 
             }
-        }
-
-        const updatedUser = {
-            ... user,
-            username: username,
-            email: email,
-            profilePicture: profilePicture,
         }
 
         await axios.put(`users/${user._id}`, updatedUser)
