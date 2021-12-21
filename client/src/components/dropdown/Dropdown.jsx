@@ -43,7 +43,9 @@ export default function Dropdown({ user }) {
                 <Link to={`/edit`}>
                     <li>Settings</li>
                 </Link>
-                <li onClick={handleLogOutClick}>Log out</li>
+                <Link to={`/`}>
+                   <li onClick={handleLogOutClick}>Log out</li> 
+                </Link>
             </ul>
         </div>
     )
