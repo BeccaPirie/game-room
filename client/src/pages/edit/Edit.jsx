@@ -4,6 +4,7 @@ import "./edit.scss";
 import { useState, useContext, useRef } from "react";
 import { AuthContext } from '../../context/AuthContext'
 import axios from "axios";
+import { Link } from 'react-router-dom'
 
 export default function Edit() {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -58,6 +59,16 @@ export default function Edit() {
             await axios.put(`users/updatePassword/${user._id}`, updatedUser)
             dispatch({type: "UPDATEPASSWORD", payload: newPassword}) //*** */
             window.location.reload()
+        }
+    }
+
+    const handleDeleteAccountClick = async () => {
+        try {
+            await axios.delete(`users/${user._id}`)
+            dispatch({ type: "DELETEACCOUNT"})
+        }
+        catch(err) {
+            console.log(err)
         }
     }
 
@@ -133,7 +144,7 @@ export default function Edit() {
                         <label htmlFor="ConfirmPassword">Confirm Password</label>
                         <input
                             type="password"
-                            id="oldPasswordInput"
+                            id="confirmPasswordInput"
                             className="updateInput"
                             ref={confirmPassword}
                         />
@@ -142,6 +153,12 @@ export default function Edit() {
                             Update Password
                         </button>
                     </form>
+
+                    <div className="deleteAccountDiv">
+                        <Link to="/">
+                          <button className="deleteAccountBtn" onClick={handleDeleteAccountClick}>Delete Account</button>  
+                        </Link>
+                    </div>
 
                 </div>
 

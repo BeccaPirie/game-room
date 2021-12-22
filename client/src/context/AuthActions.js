@@ -60,3 +60,7 @@ export const UpdatePassword = (password) => ({
     type: "UPDATEPASSWORD",
     payload: password,
 })
+
+export const DeleteAccount = () => ({
+    type: "DELETEACCOUNT",
+})

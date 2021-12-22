@@ -86,3 +86,21 @@
 .updateAccountBtn:disabled, .updatePasswordBtn:disabled {
     cursor: not-allowed;
 }
+
+.deleteAccountDiv {
+    width: 60%;
+    margin: 20px auto;
+}
+
+.deleteAccountBtn {
+    width: fit-content;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(240, 89, 89);
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    float: right;
+}

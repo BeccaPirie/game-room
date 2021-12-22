@@ -100,6 +100,12 @@ const AuthReducer = (state, action) => {
                     password: action.payload
                   }
                 };
+                case "DELETEACCOUNT":
+                  return {
+                    user: null,
+                    isFetching: false,
+                    error: false,
+                  }
             default:
             return state;
     }
