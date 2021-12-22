@@ -6,21 +6,6 @@ import { useContext } from 'react'
 export default function Dropdown({ user }) {
     const { dispatch } = useContext(AuthContext)
 
-    // const MenuItems = [
-    //     {
-    //         title: 'Profile',
-    //         path: `/profile/${user.username}`,
-    //     },
-    //     {
-    //         title: 'Settings',
-    //         path: `/edit`
-    //     },
-    //     {
-    //         title: 'Log out',
-    //         path: '/login',
-    //     }
-    // ]
-
     const handleLogOutClick = () => {
         dispatch({type: "LOGOUT"})
     }
@@ -28,15 +13,6 @@ export default function Dropdown({ user }) {
     return (
         <div className="dropdownList">
             <ul>
-                {/* {MenuItems.map((item, index) => {
-                    return (
-                        <Link to={item.path}>
-                            <li key={index} >
-                                {item.title}
-                            </li>
-                        </Link>
-                    )
-                })} */}
                 <Link to={`/profile/${user.username}`}>
                     <li>Profile</li>
                 </Link>

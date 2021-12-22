@@ -3,9 +3,6 @@ const bcrypt = require("bcrypt");
 const User = require("../models/User");
 const Game = require("../models/Game")
 
-router.get("/test", (req, res) => {
-    res.send("test")
-});
 
 // update user
 router.put("/:id", async(req, res) => {
@@ -62,7 +59,7 @@ router.put("/updatePassword/:id", async(req,res) => {
 router.delete("/:id", async(req, res) => {
     if(req.body.userId == req.params.id || req.body.isAdmin){
         try{
-            const user = await User.findByIdAndDelete(req.params.id);
+            await User.findByIdAndDelete(req.params.id);
             res.status(200).json("Account has been deleted")
         }
         catch(err){
@@ -169,8 +166,6 @@ router.get("/followers/:user", async (req, res) => {
 
 // get users favourite games
 router.get("/favourite-games/:user", async (req, res) => {
-    // const userId = req.query.userId;
-    // const username = req.query.username;
     try {
       const currentUser = 
       await User.findOne({username: req.params.user}) || await User.findById(req.params.user);

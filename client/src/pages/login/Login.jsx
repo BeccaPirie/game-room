@@ -1,21 +1,29 @@
 import './login.scss'
 import { useRef, useContext } from 'react'
-import { loginCall } from '../../apiCalls'
 import { AuthContext } from '../../context/AuthContext'
 import { CircularProgress } from '@mui/material'
 import { Link } from 'react-router-dom';
+import axios from 'axios'
 
 export default function Login() {
     const email = useRef()
     const password = useRef()
-    const { user, isFetching, error, dispatch} = useContext(AuthContext)
+    const { user, isFetching, dispatch} = useContext(AuthContext)
 
-    const handleClick = (e) => {
+    const handleClick = async (e) => {
         e.preventDefault()
-        loginCall({
+        const userCredentials = {
             email: email.current.value,
             password: password.current.value
-        }, dispatch)
+        }
+        dispatch({ type: "LOGIN_START" });
+        try {
+            const res = await axios.post("auth/login", userCredentials)
+            dispatch({ type:"LOGIN_SUCCESS", payload: res.data });
+        }
+        catch(err) {
+            dispatch({ type:"LOGIN_FAILURE", payload: err });
+        }
     }
 
     console.log(user)

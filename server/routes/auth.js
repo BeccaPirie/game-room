@@ -6,19 +6,6 @@ router.get("/", (req, res) => {
     res.send("auth route")
 })
 
-// router.post("/register", async(req, res) => {
-//     const user =  new User(req.body)
-//     try {
-      
-
-//     await user.save();
-//     res.send("ok")  
-//     }
-//     catch(err) {
-//         response.status(500).send(error);
-//     }
-// })
-
 // REGISTER
 router.post("/register", async (req, res) => {
     try {

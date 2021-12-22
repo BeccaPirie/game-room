@@ -1,14 +1,5 @@
 const router = require("express").Router();
 const Game = require("../models/Game");
-const User = require("../models/User");
-
-router.get("/", (req, res) => {
-    res.send("game route")
-});
-
-router.get("/test", (req, res) => {
-    res.send("test route")
-});
 
 router.post("/add", async(req, res) => {
     const game =  new Game(req.body)

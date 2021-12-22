@@ -2,7 +2,6 @@ import "./home.scss";
 import Navbar from "../../components/navbar/Navbar";
 import Rightbar from "../../components/rightbar/Rightbar";
 import GamesDisplay from "../../components/gamesDisplay/GamesDisplay";
-// import { Select } from "@mui/material";
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import { useContext } from 'react';

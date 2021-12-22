@@ -11,7 +11,6 @@ export default function Edit() {
     const [file, setFile] = useState(null)
     const [username, setUsername] = useState(user.username)
     const [email, setEmail] = useState(user.email)
-    const [profilePicture, setProfilePicture] = useState(user.profilePicture)
     const oldPassword = useRef()
     const newPassword = useRef()
     const confirmPassword = useRef()
@@ -30,7 +29,6 @@ export default function Edit() {
             const fileName = Date.now() + file.name
             data.append("name", fileName)
             data.append("file", file)
-            setProfilePicture(fileName)
             updatedUser.profilePicture = fileName
             try {
                 await axios.post("/upload", data)
@@ -76,7 +74,6 @@ export default function Edit() {
                         <div className="editProfilePicture">
                             <div className="profilePhotoDiv">
                                 <img src={file ? URL.createObjectURL(file) : (user.profilePicture ? PF+user.profilePicture : PF+"no-avatar.png") } />
-                                {/* <img src={user.profilePicture ? PF+user.profilePicture : PF+"no-avatar.png"} alt="" className="profileImg" /> */}
                             </div>
                             
                             <div className="changeProfilePicture">

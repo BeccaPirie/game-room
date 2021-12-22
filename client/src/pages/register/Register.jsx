@@ -1,6 +1,5 @@
 import './register.scss'
 import { useRef } from 'react'
-// import { CircularProgress } from '@mui/material'
 import axios from 'axios'
 import { useHistory } from 'react-router'
 import { Link } from 'react-router-dom';

@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const helment = require('helmet');
 const morgan = require('morgan');
-const indexRoute = require("./routes/index")
 const userRoute = require("./routes/users")
 const authRoute = require("./routes/auth")
 const gameRoute = require("./routes/games")
@@ -48,7 +47,6 @@ app.post("/server/upload", upload.single("file"), (req, res) => {
     }
 })
 
-app.use('/', indexRoute);
 app.use("/server/users", userRoute);
 app.use("/server/auth", authRoute);
 app.use("/server/games", gameRoute);
