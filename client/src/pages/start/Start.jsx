@@ -9,7 +9,7 @@ import { AuthContext } from '../../context/AuthContext'
 export default function Start() {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const gameId = useParams().gameId;
-    const {user: user, dispatch} = useContext(AuthContext)
+    const {user, dispatch} = useContext(AuthContext)
 
     const [game, setGame] = useState({})
     const [isFavourite, setIsFavourite] = useState(user.favGames.includes(gameId))

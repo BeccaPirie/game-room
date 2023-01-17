@@ -42,11 +42,9 @@ export default function Leaderboard() {
     const friendBtnHandler = () => {
         setAllBtnActive(false)
         setfriendBtnActive(true)
-        const friendsScores = game.scores.filter((score) => {
-            for(let i = 0; i < user.following.length; i++) {
-                return score.userId === user.following[i] || score.userId === user._id
-            }
-        })
+        const friendsScores = game.scores.filter((score) => 
+            user.following.includes(score.userId) || score.userId === user._id
+        )
         if(friendsScores) {
             sortScores(friendsScores)
          }

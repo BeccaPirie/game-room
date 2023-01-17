@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 
 export default function Edit() {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-    const { user: user, dispatch } = useContext(AuthContext)
+    const { user, dispatch } = useContext(AuthContext)
     const [file, setFile] = useState(null)
     const [username, setUsername] = useState(user.username)
     const [email, setEmail] = useState(user.email)
@@ -20,7 +20,7 @@ export default function Edit() {
         e.preventDefault()
 
         const updatedUser = {
-            ... user,
+            ...user,
             username: username,
             email: email,
         }
@@ -84,7 +84,7 @@ export default function Edit() {
                         <h3>Update Profile</h3>
                         <div className="editProfilePicture">
                             <div className="profilePhotoDiv">
-                                <img src={file ? URL.createObjectURL(file) : (user.profilePicture ? PF+user.profilePicture : PF+"no-avatar.png") } />
+                                <img alt="user profile" src={file ? URL.createObjectURL(file) : (user.profilePicture ? PF+user.profilePicture : PF+"no-avatar.png") } />
                             </div>
                             
                             <div className="changeProfilePicture">

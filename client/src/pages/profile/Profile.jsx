@@ -12,7 +12,7 @@ import { AuthContext } from '../../context/AuthContext'
 export default function Profile() {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const username = useParams().username;
-    const { user: user, dispatch } = useContext(AuthContext)
+    const { user, dispatch } = useContext(AuthContext)
 
     const [userProfile, setUserProfile] = useState({})
     const [favGames, setFavGames] = useState([])
