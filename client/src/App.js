@@ -11,6 +11,7 @@ import Start from './pages/start/Start';
 import { useContext } from 'react';
 import { AuthContext } from './context/AuthContext';
 import Edit from './pages/edit/Edit';
+import Gameboard from './games/candy-crush/gameboard/Gameboard';
 
 function App() {
 
@@ -47,6 +48,9 @@ function App() {
         </Route>
         <Route path='/start/:gameId'>
           <Start />
+        </Route>
+        <Route path="/play/:gameId">
+          <Gameboard />
         </Route>
       </Switch>
     </Router>

@@ -81,9 +81,9 @@ export default function Start() {
                         <h2>{game.name}</h2>
                         <div className="gameBtns">
                             <div>
-                                {/* <Link to={}>  */}
+                                <Link to={`/play/${game.id}`}> 
                                     <button className="button playBtn" onClick={recentlyPlayedHandler}>Play</button>
-                                {/* </Link> */}
+                                </Link>
                             </div>
                             <div>
                                 <button className="button addFavouriteBtn" onClick={favouriteHandler}>

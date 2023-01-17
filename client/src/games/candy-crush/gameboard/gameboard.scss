@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    padding: 30px;
+}
+
+.board {
+    display: flex;
+    flex-wrap: wrap;
+    width: 560px;
+    height: 560px;
+}
+
+.board img {
+    width: 70px;
+    height: 70px;
+}
