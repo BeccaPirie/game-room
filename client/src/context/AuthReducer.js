@@ -105,6 +105,32 @@ const AuthReducer = (state, action) => {
                     user: null,
                     isFetching: false,
                     error: false,
+                }
+                case "UPDATEPOINTS":
+                  return {
+                    ...state,
+                    user: {
+                      ...state.user,
+                      points: (state.user.points + action.payload)
+                    }
+                  }
+                case "ADDTOPSCORE":
+                  return {
+                    ...state,
+                    user: {
+                      ...state.user,
+                      topScores: [...state.user.topScores, action.payload]
+                    }
+                  }
+                case "UPDATETOPSCORE":
+                  return {
+                    ...state,
+                    user: {
+                      ...state.user,
+                      topScores: state.user.topScores.map(topScore => topScore.gameId === action.payload.gameId ? {
+                        ...topScore, score: action.payload.score
+                      } : topScore)
+                    }
                   }
             default:
             return state;

@@ -35,14 +35,19 @@ router.get("/:id", async(req, res) => {
 });
 
 // save score
-router.put("/save-score/:score", async(req, res) => {
+router.put("/save-score/:gameId", async(req, res) => {
     try{
-        const game = await Game.findById(req.body.gameId)
-        await game.updateOne({$push:{score:req.params.score}})
+        const game = await Game.findById(req.params.gameId)
+        await game.updateOne({$push:{
+            scores: {
+                userId: req.body.userId,
+                score: req.body.score
+            }
+        }})
         res.status(200).json("Score added to database")
     }
     catch(err){
-        res.status(500).json(error)
+        res.status(500).json(err)
     }
 })
 

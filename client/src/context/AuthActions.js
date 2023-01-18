@@ -64,3 +64,18 @@ export const UpdatePassword = (password) => ({
 export const DeleteAccount = () => ({
     type: "DELETEACCOUNT",
 })
+
+export const UpdatePoints = (points) => ({
+    type: "UPDATEPOINTS",
+    payload: points,
+})
+
+export const AddTopScore = (score) => ({
+    type:"ADDTOPSCORE",
+    payload:score,
+})
+
+export const UpdateTopScore = (score) => ({
+    type: "UPDATETOPSCORE",
+    payload: score,
+})

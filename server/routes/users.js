@@ -284,22 +284,32 @@ router.put("/add-user-points/:points", async (req, res) => {
     }
 })
 
-// update top score
-router.put("/update-top-score/:topScore", async(req, res) => {
+// add top score
+router.put("/add-top-score/:score", async (req, res) => {
     try {
         const user = await User.findById(req.body.userId)
-        const score = user.topScores.find(topScore => topScore.gameId === req.body.gameId)
-        if(score !== undefined) {
-            await score.updateOne({$set:{score: req.params.topScore}}) 
-            res.status(200).json("Top score updated")
-        }
-        else {
-            await user.topScores.updateOne({$push:{
-                    gameId:req.body.gameId, 
-                    score:req.params.topScore 
-                }})
-            res.status(200).json("Top score added")
-        }
+        await user.updateOne({push:{
+            topScores:{
+                gameId: req.body.gameId,
+                score: req.params.score
+            }
+        }})
+        res.status(200).json("Top score added")
+    } catch (err) {
+        res.status(500).json(err)
+    }
+})
+
+// update top score
+router.put("/update-top-score/:score", async(req, res) => {
+    try {
+        await User.findOneAndUpdate({
+            _id: req.body.userId,
+            'topScores.gameId': req.body.gameId
+        },
+        {$set: {'topScores.$.score': req.params.score}},
+        {new:true})
+        res.status(200).json("Top score updated")
     }
     catch(err) {
         res.status(500).json(err)

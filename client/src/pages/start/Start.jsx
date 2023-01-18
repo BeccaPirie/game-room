@@ -24,6 +24,14 @@ export default function Start() {
         fetchGame()
     },[gameId])
 
+    useEffect(() => {
+        setIsFavourite(user.favGames.includes(gameId))
+    }, [user, user.favGames, gameId])
+
+    useEffect(() => {
+        setIsRecentPlayed(user.recentGames.includes(gameId))
+    }, [user, user.recentGames, gameId])
+
     const favouriteHandler = async () => {
         try {
             if(isFavourite) {
@@ -81,7 +89,7 @@ export default function Start() {
                         <h2>{game.name}</h2>
                         <div className="gameBtns">
                             <div>
-                                <Link to={`/play/${game.id}`}> 
+                                <Link to={`/play/${gameId}`}> 
                                     <button className="button playBtn" onClick={recentlyPlayedHandler}>Play</button>
                                 </Link>
                             </div>

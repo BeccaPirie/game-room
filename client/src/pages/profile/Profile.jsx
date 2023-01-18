@@ -22,7 +22,6 @@ export default function Profile() {
     useEffect(()=> {
             const fetchUser = async () => {
                 const res = await axios.get(`/users?username=${username}`)
-                console.log(res.data)
                 setUserProfile(res.data)
             }
             fetchUser();
@@ -35,7 +34,6 @@ export default function Profile() {
     useEffect(()=> {
         const fetchFavouriteGames = async () => {
             const res = await axios.get(`/users/favourite-games/${username}`)
-            console.log(res.data)
             setFavGames(res.data)
         }
         fetchFavouriteGames();
@@ -44,24 +42,20 @@ export default function Profile() {
     useEffect(()=> {
         const fetchRecentGames = async () => {
             const res = await axios.get(`/users/recently-played-games/${username}`)
-            console.log(res.data)
             setRecentGames(res.data)
         }
         fetchRecentGames();
     },[username])
     
     const followHandler = async () => {
-        console.log("follow handler")
         try {
             if (isFollowing) {
-                console.log("unfollowing")
-            await axios.put(`/users/${userProfile._id}/unfollow`, {
-                userId: user._id
-            }) 
+                await axios.put(`/users/${userProfile._id}/unfollow`, {
+                    userId: user._id
+                }) 
             dispatch({ type: "UNFOLLOW", payload: userProfile._id });
             }
             else {
-                console.log("following")
                 await axios.put(`/users/${userProfile._id}/follow`, {
                     userId: user._id
                 })

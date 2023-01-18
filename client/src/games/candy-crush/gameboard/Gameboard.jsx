@@ -1,7 +1,7 @@
 // coded with help from tutorial
 // https://www.youtube.com/watch?v=PBrEq9Wd6_U&list=PLlAY3uJFrlo5-0ghjA64f5YbJIWXD-DQ4&index=9&t=12s
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import "./gameboard.scss"
 import Scoreboard from '../scoreboard/Scoreboard'
 import blue from "../images/blue.jpg"
@@ -12,15 +12,22 @@ import red from "../images/red.jpg"
 import yellow from "../images/yellow.jpg"
 import empty from "../images/empty.jpg"
 import Candies from "../candies/Candies"
+import EndScreen from "../endScreen/EndScreen"
 
 const width = 8
-const colours = [green, blue , purple, yellow, orange, red]
+const colours = [green, blue, purple, yellow, orange, red]
+const levelUpGoal = [50, 200, 500, 1000, 2000]
 
 export default function Gameboard() {
     const [currentArrangement, setCurrentArrangement] = useState([])
     const [squareBeingDragged, setSquareBeingDragged] = useState(null)
     const [squareBeingReplaced, setSquareBeingReplaced] = useState(null)
+
     const [gameScore, setGameScore] = useState(0)
+    const [moves, setMoves] = useState(2)
+    const [level, setLevel] = useState(0)
+
+    const [isPlaying, setIsPlaying] = useState(true)
 
     // create the board
     useEffect(() => {
@@ -33,8 +40,17 @@ export default function Gameboard() {
         setCurrentArrangement(boardArrangement)
     }, [])
 
+    // check if level up
+    const updateLevelUp = useCallback(() => {
+        if(gameScore >= levelUpGoal[level] && moves > 0) {
+            console.log("level up")
+            setMoves(15)
+            setLevel(level => level + 1)
+        }
+    },[gameScore, level, moves])
+
     // check for four matching colours in column
-    const checkColOfFour = () => {
+    const checkColOfFour = useCallback(() => {
         for(let i = 0; i <= 39; i++) {
             const findColOfFour = [i, i + width, i + width * 2, i + width * 3]
             const colourToCheck = currentArrangement[i]
@@ -43,13 +59,14 @@ export default function Gameboard() {
             if(findColOfFour.every(item => currentArrangement[item] === colourToCheck && !isBlank)) {
                 findColOfFour.forEach(item => currentArrangement[item] = empty)
                 setGameScore(score => score + 4)
+                updateLevelUp()
                 return true
             }
         }
-    }
+    }, [currentArrangement, updateLevelUp])
 
     // check for four matching colours in row
-    const checkRowOfFour = () => {
+    const checkRowOfFour = useCallback(() => {
         for(let i = 0; i < 64; i++) {
             const findRowOfFour = [i, i + 1, i + 2, i + 3]
             const colourToCheck = currentArrangement[i]
@@ -63,13 +80,14 @@ export default function Gameboard() {
             if(findRowOfFour.every(item => currentArrangement[item] === colourToCheck && !isBlank)) {
                 findRowOfFour.forEach(item => currentArrangement[item] = empty)
                 setGameScore(score => score + 4)
+                updateLevelUp()
                 return true
             }
         }
-    }
+    }, [currentArrangement, updateLevelUp])
 
     // check for three matching colours in column
-    const checkColOfThree = () => {
+    const checkColOfThree = useCallback(() => {
         for(let i = 0; i <= 47; i++) {
             const findColOfThree = [i, i + width, i + width * 2]
             const colourToCheck = currentArrangement[i]
@@ -78,13 +96,14 @@ export default function Gameboard() {
             if(findColOfThree.every(item => currentArrangement[item] === colourToCheck && !isBlank)) {
                 findColOfThree.forEach(item => currentArrangement[item] = empty)
                 setGameScore(score => score + 3)
+                updateLevelUp()
                 return true
             }
         }
-    }
+    }, [currentArrangement, updateLevelUp])
 
     // check for three matching colours in a row
-    const checkRowOfThree = () => {
+    const checkRowOfThree = useCallback(() => {
         for(let i = 0; i < 64; i++) {
             const findRowOfThree = [i, i + 1, i + 2]
             const colourToCheck = currentArrangement[i]
@@ -98,13 +117,14 @@ export default function Gameboard() {
             if(findRowOfThree.every(item => currentArrangement[item] === colourToCheck && !isBlank)) {
                 findRowOfThree.forEach(item => currentArrangement[item] = empty)
                 setGameScore(score => score + 3)
+                updateLevelUp()
                 return true
             }
         }
-    }
+    }, [currentArrangement, updateLevelUp])
 
     // fill empty squares when colours are removed
-    const fillEmptySquares = () => {
+    const fillEmptySquares = useCallback(() => {
         for(let i = 0; i <= 55; i++) {
             const topRow = [0, 1, 2, 3, 4, 5, 6, 7]
 
@@ -120,7 +140,7 @@ export default function Gameboard() {
                 currentArrangement[i] = empty
             }
         }
-    }
+    }, [currentArrangement])
 
     const dragStart = (e) => setSquareBeingDragged(e.target)
     const dragDrop = (e) => setSquareBeingReplaced(e.target)
@@ -149,12 +169,23 @@ export default function Gameboard() {
         (colOfFour || rowOfFour || rowOfThree || colOfThree)) {
             setSquareBeingDragged(null)
             setSquareBeingReplaced(null)
+            updateMoves()
         }
         // if move is valid, but doesn't create a row/col, switch colours back
         else {
             currentArrangement[draggedId] = squareBeingDragged.getAttribute('src')
             currentArrangement[replacedId] = squareBeingReplaced.getAttribute('src')
             setCurrentArrangement([...currentArrangement])
+        }
+    }
+
+    // update move count
+    const updateMoves = () => {
+        if(moves <= 1) {
+            setIsPlaying(false)
+        }
+        else {
+            setMoves(moves => moves - 1)
         }
     }
 
@@ -172,15 +203,17 @@ export default function Gameboard() {
         checkRowOfThree, fillEmptySquares, currentArrangement])
 
     return(
-        <div className="container">
-            <div className="board">
-                {currentArrangement.map((colour, index) => (
-                    <Candies index={index} colour={colour}
-                    dragStart={dragStart} dragDrop={dragDrop}
-                    dragEnd={dragEnd}/>
-                ))}
-            </div>
-            <Scoreboard score={gameScore}/>
+        isPlaying ?
+            <div className="container">
+                <div className="board">
+                    {currentArrangement.map((colour, index) => (
+                        <Candies key={index} index={index} colour={colour}
+                        dragStart={dragStart} dragDrop={dragDrop}
+                        dragEnd={dragEnd} isPlaying={isPlaying}/>
+                    ))}
+                </div>
+            <Scoreboard score={gameScore} moves={moves} level={level}/>
         </div>
+        : <EndScreen score={gameScore}/>
     )
 }

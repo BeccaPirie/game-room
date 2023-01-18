@@ -7,7 +7,7 @@ export default function ProfileGamesDisplay({ games}) {
     return (
         <div className="favouritedGames">
             {games.map((game) => (
-                <Link to={`/start/${game._id}`}>
+                <Link to={`/start/${game._id}`} key={game._id}>
                     <img key={game._id} src={PF+game.thumbnail || PF+"no-image.jpg"} alt="" className="favouriteGameImg"/>
                 </Link>
             ))}

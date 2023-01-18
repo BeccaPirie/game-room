@@ -1,9 +1,10 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+const ScoresSchema = require("./Scores");
 
 const GameSchema = new mongoose.Schema({
     name:{
         type:String,
-        require: true,
+        required: true,
         min:3,
         max: 20,
         unique:true
@@ -12,10 +13,7 @@ const GameSchema = new mongoose.Schema({
         type:String,
         default:""
     },
-    scores:{
-        type:Array,
-        default:[]
-    }
+    scores:[ScoresSchema]
 },
 {timestamps:true}
 );
