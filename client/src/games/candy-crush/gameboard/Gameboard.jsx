@@ -169,9 +169,9 @@ export default function Gameboard() {
         (colOfFour || rowOfFour || rowOfThree || colOfThree)) {
             setSquareBeingDragged(null)
             setSquareBeingReplaced(null)
-            updateMoves()
+            setMoves(moves => moves - 1)
         }
-        // if move is valid, but doesn't create a row/col, switch colours back
+        // switch colours back if move isn't valid
         else {
             currentArrangement[draggedId] = squareBeingDragged.getAttribute('src')
             currentArrangement[replacedId] = squareBeingReplaced.getAttribute('src')
@@ -179,27 +179,26 @@ export default function Gameboard() {
         }
     }
 
-    // update move count
-    const updateMoves = () => {
-        if(moves <= 1) {
-            setIsPlaying(false)
-        }
-        else {
-            setMoves(moves => moves - 1)
-        }
-    }
-
     useEffect(() => {
-        const timer = setInterval(() => {
-            checkColOfFour()
-            checkRowOfFour()
-            checkColOfThree()
-            checkRowOfThree()
-            fillEmptySquares()
-            setCurrentArrangement([...currentArrangement])
-        }, 100)
-        return() => clearInterval(timer)
-    }, [checkColOfFour, checkRowOfFour, checkColOfThree,
+        if(moves > 0) {
+            console.log(moves)
+            const timer = setInterval(() => {
+                checkColOfFour()
+                checkRowOfFour()
+                checkColOfThree()
+                checkRowOfThree()
+                fillEmptySquares()
+                setCurrentArrangement([...currentArrangement])
+            }, 100)
+            return() => clearInterval(timer)
+        }
+        if(moves <= 0) {
+            const timer = setTimeout(() => {
+                setIsPlaying(false)
+            }, 2000)
+            return() => clearTimeout(timer)
+        }
+    }, [moves, checkColOfFour, checkRowOfFour, checkColOfThree,
         checkRowOfThree, fillEmptySquares, currentArrangement])
 
     return(

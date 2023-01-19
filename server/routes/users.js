@@ -288,7 +288,9 @@ router.put("/add-user-points/:points", async (req, res) => {
 router.put("/add-top-score/:score", async (req, res) => {
     try {
         const user = await User.findById(req.body.userId)
-        await user.updateOne({push:{
+        const checkGame = user.topScores.find(score => score.gameId === req.body.gameId)
+        if(checkGame) return res.json("game already added")
+        await user.updateOne({$push:{
             topScores:{
                 gameId: req.body.gameId,
                 score: req.params.score

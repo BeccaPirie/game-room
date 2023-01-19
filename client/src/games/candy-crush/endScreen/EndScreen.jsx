@@ -12,11 +12,13 @@ export default function EndScreen({ score }) {
 
     // update top score
     const updateTopScore = useCallback(async (game) => {
+        console.log("update score function")
         if(game) {
             await axios.put(`/users/update-top-score/${score}`, {
                 userId: user._id,
                 gameId: gameId
             })
+
             dispatch({type:"UPDATETOPSCORE", payload:{
                 gameId: gameId,
                 score:parseInt(score)
@@ -69,7 +71,7 @@ export default function EndScreen({ score }) {
             <h1>Game over!</h1>
             {isTopScore && <h2>New high score!</h2>}
             <h2>Your score: {score}</h2>
-            <h2>Your high score: {isTopScore ? score : topScore.score}</h2>
+            <h2>Your high score: {isTopScore ? score : (topScore ? topScore.score: "0")}</h2>
         </div>
     )
 }
