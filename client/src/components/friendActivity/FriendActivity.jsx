@@ -11,7 +11,6 @@ export default function FriendActivity({ user }) {
         const fetchLastPlayed = async () => {
             if(user.lastPlayed !== "") {
                const res = await axios.get(`/games/${user.lastPlayed}`)
-                console.log(res.data)
                 setLastPlayed(res.data) 
             }
             else {

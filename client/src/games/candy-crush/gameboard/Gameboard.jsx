@@ -180,7 +180,6 @@ export default function Gameboard() {
 
     useEffect(() => {
         if(moves > 0) {
-            console.log(moves)
             const timer = setInterval(() => {
                 checkColOfFour()
                 checkRowOfFour()

@@ -13,7 +13,6 @@ export default function Followers() {
     useEffect(() => {
         const fetchFollowers = async () => {
             const res = await axios.get(`/users/followers/${username}`)
-            console.log(res.data)
             setFollowers(res.data)
         }
         fetchFollowers()

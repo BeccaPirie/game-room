@@ -13,7 +13,6 @@ export default function Following() {
     useEffect(() => {
         const fetchFollowing = async () => {
             const res = await axios.get(`/users/following/${username}`)
-            console.log(res.data)
             setFollowing(res.data)
         }
         fetchFollowing()

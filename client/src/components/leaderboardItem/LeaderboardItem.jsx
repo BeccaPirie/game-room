@@ -10,7 +10,6 @@ export default function Leaderboard({ item, listNumber }) {
     useEffect(() => {
         const fetchUser = async () => {
             const res = await axios.get(`/users?userId=${item.userId}`)
-            console.log(res.data)
             setUser(res.data)
         }
         fetchUser()

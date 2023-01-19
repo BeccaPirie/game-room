@@ -17,14 +17,12 @@ export default function UserListItem({ user }) {
         console.log("follow handler")
         try {
             if (isFollowing) {
-                console.log("unfollowing")
             await axios.put(`/users/${user._id}/unfollow`, {
                 userId: currentUser._id
             }) 
             dispatch({ type: "UNFOLLOW", payload: user._id });
             }
             else {
-                console.log("following")
                 await axios.put(`/users/${user._id}/follow`, {
                     userId: currentUser._id
                 })

@@ -14,7 +14,6 @@ export default function Rightbar() {
     useEffect(() => {
         const fetchFollowing = async () => {
             const res = await axios.get(`/users/following/${user.username}`)
-            console.log(res.data)
             setFollowing(res.data)
         }
         fetchFollowing()

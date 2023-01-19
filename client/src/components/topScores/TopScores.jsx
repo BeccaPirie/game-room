@@ -10,7 +10,6 @@ export default function TopScores({ topScore }) {
     useEffect(() => {
         const fetchGame = async () => {
             const res = await axios.get(`/games/${topScore.gameId}`)
-            console.log(res.data)
             setGame(res.data)
         }
         fetchGame()

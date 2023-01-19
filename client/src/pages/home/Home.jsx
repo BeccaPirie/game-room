@@ -17,7 +17,6 @@ export default function Home() {
     useEffect(()=> {
         const fetchFavouriteGames = async () => {
             const res = await axios.get(`/users/favourite-games/${user.username}`)
-            console.log(res.data)
             setFavGames(res.data)
         }
         fetchFavouriteGames();

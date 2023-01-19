@@ -15,7 +15,6 @@ export default function Search() {
 
     const getSearchResults = async () => {
         const res = await axios.get(`/users/getUsers/${searchTerm}`)
-        console.log(res.data)
         setSearchResults(res.data)
     }
     

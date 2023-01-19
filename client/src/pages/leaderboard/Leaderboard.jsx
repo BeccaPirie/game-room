@@ -25,7 +25,6 @@ export default function Leaderboard() {
     useEffect(() => {
         const fetchGame = async () => {
             const res = await axios.get(`/games/${gameId}`)
-            console.log(res.data)
             setGame(res.data)
         }
         fetchGame()

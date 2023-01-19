@@ -18,7 +18,6 @@ export default function Start() {
     useEffect(() => {
         const fetchGame = async () => {
             const res = await axios.get(`/games/${gameId}`)
-            console.log(res.data)
             setGame(res.data)
         }
         fetchGame()
