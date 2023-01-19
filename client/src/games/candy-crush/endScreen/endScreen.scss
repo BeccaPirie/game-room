@@ -1,0 +1,48 @@
+@import '../../../scss/mixins';
+@import '../../../scss/variables';
+
+.gameOver {
+    position: absolute;
+    background-color: rgb(150, 233, 233);
+    height: 320px;
+    width: 300px;
+    text-align: center;
+    padding: 25px;
+    padding-top: 40px;
+    border-radius: 5%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    line-height: 1.5;
+}
+button {
+    @include button;
+}
+
+.endScreenBtnDiv {
+    display: block;
+}
+
+.endBtn {
+    margin: 10px auto;
+    padding: 12px;
+    width: 150px;
+}
+
+.firstBtn {
+    margin-top: 35px;
+    background-color: $green;
+}
+
+.firstBtn:hover {
+    background-color: $darkgreen;
+}
+
+.secondBtn {
+    background-color: $red;
+}
+
+.secondBtn:hover {
+    background-color: $darkred;
+}

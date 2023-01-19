@@ -3,6 +3,8 @@ import { useContext, useState, useCallback } from "react"
 import { useEffect } from "react"
 import axios from 'axios'
 import { useParams } from "react-router"
+import "./endScreen.scss"
+import { Link } from "react-router-dom"
 
 export default function EndScreen({ score }) {
     const gameId = useParams().gameId
@@ -12,7 +14,6 @@ export default function EndScreen({ score }) {
 
     // update top score
     const updateTopScore = useCallback(async (game) => {
-        console.log("update score function")
         if(game) {
             await axios.put(`/users/update-top-score/${score}`, {
                 userId: user._id,
@@ -67,11 +68,20 @@ export default function EndScreen({ score }) {
     },[user, score, gameId, updateTopScore])
 
     return(
-        <div>
+        <div className="gameOver">
             <h1>Game over!</h1>
             {isTopScore && <h2>New high score!</h2>}
             <h2>Your score: {score}</h2>
             <h2>Your high score: {isTopScore ? score : (topScore ? topScore.score: "0")}</h2>
+            <div className="endScreenBtnDiv">
+                <Link to={`/start/${gameId}`}> 
+                <button className="endBtn firstBtn">Game Home</button>  
+                </Link>
+            </div><div className="endScreenBtnDiv">
+                <Link to={`/`}> 
+                <button className="endBtn secondBtn">Exit</button>  
+                </Link>
+            </div>
         </div>
     )
 }

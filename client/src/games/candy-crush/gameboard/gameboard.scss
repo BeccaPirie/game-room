@@ -1,6 +1,18 @@
 .container {
     display: flex;
     padding: 30px;
+    background-image: url(../images/cc-background.webp);
+    background-size: cover;
+}
+
+.background {
+    background-color: aqua;
+}
+
+.board-container {
+    padding: 30px;
+    display: flex;
+    flex: 6;
 }
 
 .board {
@@ -8,6 +20,9 @@
     flex-wrap: wrap;
     width: 560px;
     height: 560px;
+    padding: 30px;
+    background-color: rgb(246, 85, 187);
+    border-radius: 5%;
 }
 
 .board img {

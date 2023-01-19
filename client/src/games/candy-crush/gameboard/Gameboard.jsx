@@ -4,19 +4,19 @@
 import { useState, useEffect, useCallback } from "react"
 import "./gameboard.scss"
 import Scoreboard from '../scoreboard/Scoreboard'
-import blue from "../images/blue.jpg"
-import green from "../images/green.jpg"
-import orange from "../images/orange.jpg"
-import purple from "../images/purple.jpg"
-import red from "../images/red.jpg"
-import yellow from "../images/yellow.jpg"
-import empty from "../images/empty.jpg"
+import blue from "../images/blue1.png"
+import green from "../images/green1.png"
+import orange from "../images/orange1.png"
+import purple from "../images/purple1.png"
+import red from "../images/red1.png"
+import yellow from "../images/yellow1.png"
+import empty from "../images/empty1.png"
 import Candies from "../candies/Candies"
 import EndScreen from "../endScreen/EndScreen"
 
 const width = 8
 const colours = [green, blue, purple, yellow, orange, red]
-const levelUpGoal = [50, 200, 500, 1000, 2000]
+const levelUpGoal = [50, 150, 300, 500, 700, 1000, 1300, 1700, 2100, 2500, 3000, 3500, 5000]
 
 export default function Gameboard() {
     const [currentArrangement, setCurrentArrangement] = useState([])
@@ -24,7 +24,7 @@ export default function Gameboard() {
     const [squareBeingReplaced, setSquareBeingReplaced] = useState(null)
 
     const [gameScore, setGameScore] = useState(0)
-    const [moves, setMoves] = useState(2)
+    const [moves, setMoves] = useState(15)
     const [level, setLevel] = useState(0)
 
     const [isPlaying, setIsPlaying] = useState(true)
@@ -42,9 +42,8 @@ export default function Gameboard() {
 
     // check if level up
     const updateLevelUp = useCallback(() => {
-        if(gameScore >= levelUpGoal[level] && moves > 0) {
-            console.log("level up")
-            setMoves(15)
+        if(gameScore >= levelUpGoal[level] && moves >= 0) {
+            setMoves(moves => moves + 15)
             setLevel(level => level + 1)
         }
     },[gameScore, level, moves])
@@ -192,27 +191,28 @@ export default function Gameboard() {
             }, 100)
             return() => clearInterval(timer)
         }
-        if(moves <= 0) {
+        if(moves <= 0 && gameScore < levelUpGoal[level]) {
             const timer = setTimeout(() => {
                 setIsPlaying(false)
-            }, 2000)
+            }, 500)
             return() => clearTimeout(timer)
         }
     }, [moves, checkColOfFour, checkRowOfFour, checkColOfThree,
         checkRowOfThree, fillEmptySquares, currentArrangement])
 
     return(
-        isPlaying ?
             <div className="container">
-                <div className="board">
-                    {currentArrangement.map((colour, index) => (
-                        <Candies key={index} index={index} colour={colour}
-                        dragStart={dragStart} dragDrop={dragDrop}
-                        dragEnd={dragEnd} isPlaying={isPlaying}/>
-                    ))}
-                </div>
-            <Scoreboard score={gameScore} moves={moves} level={level}/>
+                <Scoreboard score={gameScore} moves={moves} level={level}/>
+                <div className="board-container">
+                    <div className="board">
+                        {currentArrangement.map((colour, index) => (
+                            <Candies key={index} index={index} colour={colour}
+                            dragStart={dragStart} dragDrop={dragDrop}
+                            dragEnd={dragEnd} isPlaying={isPlaying}/>
+                        ))}
+                    </div>
+                </div>        
+            {!isPlaying && <EndScreen score={gameScore}/>}
         </div>
-        : <EndScreen score={gameScore}/>
     )
 }

@@ -1,0 +1,15 @@
+.scoreboard-container {
+    display: flex;
+    flex: 6;
+
+    .scoreboard {
+        background-color: rgba(250, 127, 205, 0.85);
+        height: fit-content;
+        width: 400px;
+        margin: 80px auto;
+        border-radius: 5%;
+        text-align: center;
+        border: 20px solid rgb(246, 85, 187);
+        line-height: 2.5;
+    }
+}

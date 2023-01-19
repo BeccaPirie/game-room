@@ -2,10 +2,12 @@ import "./scoreboard.scss"
 
 export default function Scoreboard({ score, moves, level }) {
     return(
-        <div className="scoreboard">
-            <h2>Score: {score}</h2>
-            <h2>Moves Remaining: {moves > 0 ? moves : "Game Over"}</h2>
-            <h2>Level: {level}</h2>
+        <div className="scoreboard-container">
+            <div className="scoreboard">
+                <h2 className="scoreboard-score">Score: {score}</h2>
+                <h2 className="scoreboard-moves">Moves Remaining: {moves}</h2>
+                <h2 className="scoreboard-level">Level: {level}</h2>
+            </div>
         </div>
     )
 }
