@@ -2,23 +2,25 @@
 // https://www.youtube.com/watch?v=PBrEq9Wd6_U&list=PLlAY3uJFrlo5-0ghjA64f5YbJIWXD-DQ4&index=9&t=12s
 
 import { useState, useEffect, useCallback } from "react"
-import "./gameboard.scss"
-import Scoreboard from '../scoreboard/Scoreboard'
-import blue from "../images/blue1.png"
-import green from "../images/green1.png"
-import orange from "../images/orange1.png"
-import purple from "../images/purple1.png"
-import red from "../images/red1.png"
-import yellow from "../images/yellow1.png"
-import empty from "../images/empty1.png"
-import Candies from "../candies/Candies"
-import EndScreen from "../endScreen/EndScreen"
+import "./candyCrush.scss"
+import Scoreboard from '../../components/candyCrushScoreboard/CandyCrushScoreboard'
+import Candies from "../../components/candies/Candies"
+import EndScreen from "../../components/endScreen/EndScreen"
+
+const PF = process.env.REACT_APP_PUBLIC_FOLDER
+const blue = `${PF}blue1.png`
+const green = `${PF}green1.png`
+const orange = `${PF}orange1.png`
+const purple = `${PF}purple1.png`
+const red = `${PF}red1.png`
+const yellow = `${PF}yellow1.png`
+const empty = `${PF}empty1.png`
 
 const width = 8
 const colours = [green, blue, purple, yellow, orange, red]
 const levelUpGoal = [50, 150, 300, 500, 700, 1000, 1300, 1700, 2100, 2500, 3000, 3500, 5000]
 
-export default function Gameboard() {
+export default function CandyCrush() {
     const [currentArrangement, setCurrentArrangement] = useState([])
     const [squareBeingDragged, setSquareBeingDragged] = useState(null)
     const [squareBeingReplaced, setSquareBeingReplaced] = useState(null)
@@ -197,7 +199,7 @@ export default function Gameboard() {
             return() => clearTimeout(timer)
         }
     }, [moves, checkColOfFour, checkRowOfFour, checkColOfThree,
-        checkRowOfThree, fillEmptySquares, currentArrangement])
+        checkRowOfThree, fillEmptySquares, currentArrangement, gameScore, level])
 
     return(
             <div className="container">

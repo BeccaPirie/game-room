@@ -1,6 +1,6 @@
-import "./scoreboard.scss"
+import "./candyCrushScoreboard.scss"
 
-export default function Scoreboard({ score, moves, level }) {
+export default function CandyCrushScoreboard({ score, moves, level }) {
     return(
         <div className="scoreboard-container">
             <div className="scoreboard">
