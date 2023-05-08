@@ -36,12 +36,16 @@ export default function Start() {
             if(isFavourite) {
                 await axios.put(`/users/${game._id}/remove-from-favourites`, {
                     userId: user._id
+                }, {
+                    headers: {authorization:'Bearer ' + user.token}
                 })
                 dispatch({ type: "UNFAVOURITE", payload: game._id })
             }
             else {
                 await axios.put(`/users/${game._id}/add-to-favourites`, {
                     userId: user._id
+                }, {
+                    headers: {authorization:'Bearer ' + user.token}
                 })
                 dispatch({ type: "FAVOURITE", payload: game._id })
             }
@@ -88,9 +92,12 @@ export default function Start() {
                         <h2>{game.name}</h2>
                         <div className="gameBtns">
                             <div>
-                                <Link to={`/play/${gameId}`}> 
+                                {game.name === "candy-crush" ? 
+                                <Link to={`/play/${game.name}`}> 
                                     <button className="button playBtn" onClick={recentlyPlayedHandler}>Play</button>
-                                </Link>
+                                </Link> :
+                                    <button className="button playBtn" onClick={recentlyPlayedHandler} disabled>Play</button>
+                                }
                             </div>
                             <div>
                                 <button className="button addFavouriteBtn" onClick={favouriteHandler}>

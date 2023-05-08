@@ -19,12 +19,16 @@ export default function UserListItem({ user }) {
             if (isFollowing) {
             await axios.put(`/users/${user._id}/unfollow`, {
                 userId: currentUser._id
+            }, {
+                headers: {authorization:'Bearer ' + user.token}
             }) 
             dispatch({ type: "UNFOLLOW", payload: user._id });
             }
             else {
                 await axios.put(`/users/${user._id}/follow`, {
                     userId: currentUser._id
+                }, {
+                    headers: {authorization:'Bearer ' + user.token}
                 })
                 dispatch({ type: "FOLLOW", payload: user._id });
             }

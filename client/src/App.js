@@ -49,7 +49,7 @@ function App() {
         <Route path='/start/:gameId'>
           <Start />
         </Route>
-        <Route path="/play/:gameId">
+        <Route path="/play/candy-crush">
           <CandyCrush />
         </Route>
       </Switch>

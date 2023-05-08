@@ -39,7 +39,9 @@ export default function Edit() {
             }
         }
 
-        await axios.put(`users/${user._id}`, updatedUser)
+        await axios.put(`users/${user._id}`, updatedUser,
+            {headers: {authorization:'Bearer ' + user.token}
+        })
         dispatch({ type: "UPDATEPROFILE", payload: updatedUser})
         window.location.reload()
     }
@@ -56,7 +58,8 @@ export default function Edit() {
                 newPassword: newPassword.current.value
             }
 
-            await axios.put(`users/updatePassword/${user._id}`, updatedUser)
+            await axios.put(`users/updatePassword/${user._id}`, updatedUser,
+            {headers: {authorization:'Bearer ' + user.token}})
             dispatch({type: "UPDATEPASSWORD", payload: newPassword}) //*** */
             window.location.reload()
         }
@@ -64,7 +67,8 @@ export default function Edit() {
 
     const handleDeleteAccountClick = async () => {
         try {
-            await axios.delete(`users/${user._id}`)
+            await axios.delete(`users/${user._id}`,
+            {headers: {authorization:'Bearer ' + user.token}})
             dispatch({ type: "DELETEACCOUNT"})
         }
         catch(err) {

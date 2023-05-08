@@ -52,12 +52,16 @@ export default function Profile() {
             if (isFollowing) {
                 await axios.put(`/users/${userProfile._id}/unfollow`, {
                     userId: user._id
+                },{
+                    headers: {authorization:'Bearer ' + user.token}
                 }) 
             dispatch({ type: "UNFOLLOW", payload: userProfile._id });
             }
             else {
                 await axios.put(`/users/${userProfile._id}/follow`, {
                     userId: user._id
+                }, {
+                    headers: {authorization:'Bearer ' + user.token}
                 })
                 dispatch({ type: "FOLLOW", payload: userProfile._id });
             }

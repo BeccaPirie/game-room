@@ -18,6 +18,8 @@ export default function EndScreen({ score }) {
             await axios.put(`/users/update-top-score/${score}`, {
                 userId: user._id,
                 gameId: gameId
+            }, {
+                headers: {authorization:'Bearer ' + user.token}
             })
 
             dispatch({type:"UPDATETOPSCORE", payload:{
@@ -29,13 +31,15 @@ export default function EndScreen({ score }) {
             await axios.put(`/users/add-top-score/${score}`, {
                 userId: user._id,
                 gameId: gameId
+            }, {
+                headers: {authorization:'Bearer ' + user.token}
             })
             dispatch({type:"ADDTOPSCORE", payload:{
                 gameId: gameId,
                 score: parseInt(score)
             }})
         }
-    }, [gameId, score, user._id, dispatch])
+    }, [gameId, score, user._id, dispatch, user.token])
 
     // add score to game collection
     useEffect(() => {
@@ -51,11 +55,13 @@ export default function EndScreen({ score }) {
     // add score to users points
     useEffect(() => {
         const addPoints = async () => {
-            await axios.put(`/users/add-user-points/${score}`, {userId: user._id})
+            await axios.put(`/users/add-user-points/${score}`, {userId: user._id}, {
+                headers: {authorization:'Bearer ' + user.token}
+            })
             dispatch({type:"UPDATEPOINTS", payload:parseInt(score)})
         }
         addPoints()
-    }, [score, user._id, dispatch])
+    }, [score, user._id, dispatch, user.token])
 
     // check if there is top score data for current game
     useEffect(() =>{

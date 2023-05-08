@@ -25,7 +25,6 @@ export default function Home() {
     useEffect(()=> {
         const fetchRecentGames = async () => {
             const res = await axios.get(`/users/recently-played-games/${user.username}`)
-            console.log(res.data)
             setRecentGames(res.data)
         }
         fetchRecentGames();
@@ -34,7 +33,6 @@ export default function Home() {
     useEffect(()=> {
         const fetchAllGames = async () => {
             const res = await axios.get("games/all")
-            console.log(res.data)
             setGames(res.data)
         }
         fetchAllGames();

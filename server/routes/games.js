@@ -8,7 +8,7 @@ router.post("/add", async(req, res) => {
         res.send("ok")  
     }
     catch(err) {
-        response.status(500).send(error);
+        response.status(500).send(err);
     }
 })
 

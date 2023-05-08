@@ -24,7 +24,7 @@ export default function Register() {
                 confirmPassword: confirmPassword.current.value
             }
             try {
-                await axios.post("/auth/register", user)
+                await axios.post("auth/register", user)
                 history.push('/login')
             } catch(err) {
                 console.log(err)
